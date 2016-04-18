@@ -73,7 +73,7 @@ namespace Fonlow.Testing
             {
                 var span = (DateTime.Now - timeStart).TotalSeconds;
                 Debug.WriteLine(String.Format("Test cases with IIS Express had run for {0} seconds.", span));
-                process.Kill();
+                process.CloseMainWindow();//More graceful than Kill.
             }
             catch (System.ComponentModel.Win32Exception e)
             {

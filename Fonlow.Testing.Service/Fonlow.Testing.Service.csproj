@@ -39,6 +39,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -60,7 +61,8 @@
     <None Include="..\FonlowTesting.snk">
       <Link>Properties\FonlowTesting.snk</Link>
     </None>
-    <None Include="packages.config" />
+    <None Include="Fonlow.Testing.Service.nuspec" />
+    <None Include="PackNupkg.bat" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
