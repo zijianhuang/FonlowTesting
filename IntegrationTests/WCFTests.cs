@@ -25,6 +25,11 @@ namespace IntegrationTests
                 var s=  client.GetData(3);
                 Assert.Equal("3", s);
             }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.TraceError(ex.ToString());
+                throw;
+            }
             finally
             {
                 agent.Stop();

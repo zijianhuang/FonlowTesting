@@ -14,10 +14,11 @@ namespace Fonlow.Testing
             ProcessStartInfo info = new ProcessStartInfo(@"C:\Program Files (x86)\IIS Express\iisexpress.exe", arguments)
             {
                 // WindowStyle= ProcessWindowStyle.Minimized
+                UseShellExecute=true,
             };
 
             process = Process.Start(info);
-            Debug.WriteLine("IIS Express started: "+arguments);
+            Debug.WriteLine($"IIS Express (pid: {process.Id} started with {arguments}");
             timeStart = DateTime.Now;
         }
 
@@ -40,15 +41,13 @@ namespace Fonlow.Testing
         {
             get
             {
-                var useIisExpress = System.Configuration.ConfigurationManager.AppSettings["Testing_UseIisExpress"];
-                if (String.Equals(useIisExpress, "true", StringComparison.CurrentCultureIgnoreCase))
-                {
-                    var hostSite = System.Configuration.ConfigurationManager.AppSettings["Testing_HostSite"];
-                    var hostSiteApplicationPool = System.Configuration.ConfigurationManager.AppSettings["Testing_HostSiteApplicationPool"];
-                    return String.Format("/site:\"{0}\" /apppool:\"{1}\"", hostSite, hostSiteApplicationPool);
-                }
 
-                return null;
+                var hostSite = System.Configuration.ConfigurationManager.AppSettings["Testing_HostSite"];
+                var hostSiteApplicationPool = System.Configuration.ConfigurationManager.AppSettings["Testing_HostSiteApplicationPool"];
+                var slnRoot = System.Configuration.ConfigurationManager.AppSettings["Testing_SlnRoot"];//for VS 2015+
+                var iisStartArguments = String.IsNullOrEmpty(slnRoot) ? String.Format("/site:\"{0}\" /apppool:\"{1}\"", hostSite, hostSiteApplicationPool)
+                    : String.Format("/site:\"{0}\" /apppool:\"{1}\" /config:\"{2}\"", hostSite, hostSiteApplicationPool, System.IO.Path.Combine(slnRoot, @".vs\config\applicationhost.config"));
+                return iisStartArguments;
             }
         }
 
@@ -62,7 +61,7 @@ namespace Fonlow.Testing
         }
 
         DateTime timeStart;
-         
+
         Process process;
 
         public void Stop()
