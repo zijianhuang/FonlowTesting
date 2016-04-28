@@ -37,6 +37,9 @@ namespace Fonlow.Testing
             }
         }
 
+        /// <summary>
+        /// Arguments for IisExpress.exe defined in app settings of the app.config.
+        /// </summary>
         public static string IisExpressArguments
         {
             get
@@ -51,6 +54,9 @@ namespace Fonlow.Testing
             }
         }
 
+        /// <summary>
+        /// Explicitly define whether to use IisExpress or other external Web service that has already been running.
+        /// </summary>
         public static bool UseIisExpress
         {
             get
@@ -64,6 +70,9 @@ namespace Fonlow.Testing
 
         Process process;
 
+        /// <summary>
+        /// Stop IIS Express along with the Website launched by this class.
+        /// </summary>
         public void Stop()
         {
             if (process == null)

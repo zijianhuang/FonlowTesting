@@ -5,10 +5,14 @@ namespace Fonlow.Testing
 {
     /// <summary>
     /// Launch IIS Express if AppSettings["Testing_UseIisExpress"] is true, using the following settings
-    /// AppSettings["Testing_HostSite"]; AppSettings["Testing_HostSiteApplicationPool"];
+    /// AppSettings["Testing_HostSite"]; AppSettings["Testing_HostSiteApplicationPool"]. This class is mainly for 
+    /// launching IIS Express only once for one or multiple test classes that talk to the same Website.
     /// </summary>
     public class IisExpressFixture : IDisposable
     {
+        /// <summary>
+        /// Create the fixture. And this constructor is also used in XUnit.ICollectionFixture.
+        /// </summary>
         public IisExpressFixture()
         {
             Debug.WriteLine("To create IisExpressFixture");
@@ -21,18 +25,20 @@ namespace Fonlow.Testing
         }
 
         /// <summary>
-        /// Create the fixture only if AppSettings["Testing_UseIisExpress"].
+        /// Create the fixture only if AppSettings["Testing_UseIisExpress"]=true.
         /// </summary>
         /// <returns>Null if AppSettings["Testing_UseIisExpress"] is false.</returns>
         public static IisExpressFixture Create()
         {
-            var useIisExpress = System.Configuration.ConfigurationManager.AppSettings["Testing_UseIisExpress"];
-            if (String.Equals(useIisExpress, "true", StringComparison.CurrentCultureIgnoreCase))
+            if (IisExpressAgent.UseIisExpress)
                 return new IisExpressFixture();
 
             return null;
         }
 
+        /// <summary>
+        /// What defined in AppSettings["Testing_BaseUrl"]
+        /// </summary>
         public Uri BaseUri
         { get; private set; }
         

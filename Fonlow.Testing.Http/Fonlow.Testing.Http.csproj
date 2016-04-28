@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8F40F160-D999-4EE8-92C7-DFB335D65167}</ProjectGuid>
+    <ProjectGuid>{279819FF-2567-4021-9164-B419C690B547}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Fonlow.Testing.Service</RootNamespace>
-    <AssemblyName>Fonlow.Testing.Service</AssemblyName>
+    <RootNamespace>Fonlow.Testing.Http</RootNamespace>
+    <AssemblyName>Fonlow.Testing.Http</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -36,10 +36,13 @@
     <AssemblyOriginatorKeyFile>..\FonlowTesting.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,15 +54,15 @@
     <Compile Include="..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
-    <Compile Include="IisExpressAgent.cs" />
-    <Compile Include="IisFixture.cs" />
+    <Compile Include="HttpClientFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\FonlowTesting.snk">
       <Link>Properties\FonlowTesting.snk</Link>
     </None>
-    <None Include="Fonlow.Testing.Service.nuspec" />
+    <None Include="Fonlow.Testing.Http.nuspec" />
+    <None Include="packages.config" />
     <None Include="PackNupkg.bat" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

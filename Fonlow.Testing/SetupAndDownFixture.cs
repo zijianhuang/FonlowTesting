@@ -6,11 +6,19 @@ using System.Threading.Tasks;
 
 namespace Fonlow.Testing
 {
-    public class TearUpAndDownFixture : IDisposable
+    /// <summary>
+    /// A base class for creating fixtures that could setup and tear down. The derived class is to be used with XUnit.ICollectionFixture.
+    /// </summary>
+    public class SetupAndTearDownFixture : IDisposable
     {
-        protected TearUpAndDownFixture(Action testClassTearUp, Action testClassTearDown)
+        /// <summary>
+        /// Derived class should provide actions of setting up and tearing down resources
+        /// </summary>
+        /// <param name="testClassSetup">To setup resources</param>
+        /// <param name="testClassTearDown"></param>
+        protected SetupAndTearDownFixture(Action testClassSetup, Action testClassTearDown)
         {
-            tearUp = testClassTearUp;
+            tearUp = testClassSetup;
             tearDown = testClassTearDown;
 
             if (tearUp!=null)

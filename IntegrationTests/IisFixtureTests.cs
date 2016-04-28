@@ -11,7 +11,7 @@ using System.ServiceModel;
 namespace IntegrationTests
 {
     [Collection(TestConstants.IisExpressAndInit)]
-    public class IisFixtureTests
+    public class IisExpressFixtureTests
     {
         const string hostBaseAddress = "http://localhost:4060/Service1.svc";
 
