@@ -139,13 +139,28 @@ namespace Fonlow.Testing
             }
         }
 
+        bool disposed;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this.disposed)
+            {
+                if (disposing)
+                {
+                    if (AuthorizedClient != null)
+                    {
+                        AuthorizedClient.Dispose();
+                    }
+                }
+
+                this.disposed = true;
+            }
+        }
 
         public void Dispose()
         {
-            if (AuthorizedClient != null)
-            {
-                AuthorizedClient.Dispose();
-            }
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 
