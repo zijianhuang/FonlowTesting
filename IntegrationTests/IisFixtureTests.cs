@@ -7,6 +7,7 @@ using Xunit;
 using Fonlow.Testing;
 using Fonlow.DemoService;
 using System.ServiceModel;
+using System.IO;
 
 namespace IntegrationTests
 {
@@ -30,6 +31,31 @@ namespace IntegrationTests
             var client = ChannelFactory<IService1>.CreateChannel(new BasicHttpBinding(), new EndpointAddress(hostBaseAddress));
             var s = client.GetDataUsingDataContract(new CompositeType() { BoolValue = true, StringValue = "hey" });
             Assert.Equal("heySuffix", s.StringValue);
+        }
+
+        [Fact]
+        public void TestSlnRoot()
+        {
+            var currentDir = Directory.GetCurrentDirectory();
+            var slnDir = GetSlnDir(currentDir);
+            Assert.NotNull(slnDir);
+        }
+
+        static DirectoryInfo GetSlnDir(string dir)
+        {
+            var d = new DirectoryInfo(dir);
+
+            var ds = d.EnumerateDirectories(".vs", SearchOption.TopDirectoryOnly).ToArray();
+            while (ds.Length==0 && d.Parent != null)
+            {
+                d = d.Parent;
+                if (d == null)
+                    break;
+
+                ds = d.EnumerateDirectories(".vs", SearchOption.TopDirectoryOnly).ToArray();
+            }
+
+            return d;
         }
     }
 }
