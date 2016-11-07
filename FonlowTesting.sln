@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fonlow.DemoService", "Fonlow.DemoService\Fonlow.DemoService.csproj", "{BF7E6591-CF74-4858-9F6E-8D67ECC9B47C}"
 EndProject
@@ -14,6 +14,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fonlow.Testing.Http", "Fonlow.Testing.Http\Fonlow.Testing.Http.csproj", "{279819FF-2567-4021-9164-B419C690B547}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A3630AD3-6DC6-4426-924A-838EEB803714}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{68F190A5-D31E-4259-A7D8-BC96EC10EFA3}"
+	ProjectSection(SolutionItems) = preProject
+		FonlowTesting.msbuild = FonlowTesting.msbuild
+		ReleaseBuild.bat = ReleaseBuild.bat
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

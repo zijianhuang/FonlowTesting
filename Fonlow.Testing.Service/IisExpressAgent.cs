@@ -48,6 +48,19 @@ namespace Fonlow.Testing
                 var hostSite = System.Configuration.ConfigurationManager.AppSettings["Testing_HostSite"];
                 var hostSiteApplicationPool = System.Configuration.ConfigurationManager.AppSettings["Testing_HostSiteApplicationPool"];
                 var slnRoot = System.Configuration.ConfigurationManager.AppSettings["Testing_SlnRoot"];//for VS 2015+
+                if (slnRoot== "SLN_ROOT_.VS")
+                {
+                    var d = DirFunctions.GetSlnDir(System.IO.Directory.GetCurrentDirectory());
+                    if (d != null)
+                    {
+                        slnRoot = d.FullName;
+                    }
+                    else
+                    {
+                        throw new ArgumentException("The .vs folder of the VS 2015 solution does not seem to exist.");
+                    }
+                }
+
                 var appHostConfig = System.IO.Path.Combine(slnRoot, @".vs\config\applicationhost.config");
                 if (!System.IO.File.Exists(appHostConfig))
                     throw new ArgumentException("app.config does not contain correct info pointing to applicationhost.config for IIS Express.");

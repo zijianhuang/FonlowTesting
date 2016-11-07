@@ -37,25 +37,9 @@ namespace IntegrationTests
         public void TestSlnRoot()
         {
             var currentDir = Directory.GetCurrentDirectory();
-            var slnDir = GetSlnDir(currentDir);
+            var slnDir = DirFunctions.GetSlnDir(currentDir);
             Assert.NotNull(slnDir);
         }
 
-        static DirectoryInfo GetSlnDir(string dir)
-        {
-            var d = new DirectoryInfo(dir);
-
-            var ds = d.EnumerateDirectories(".vs", SearchOption.TopDirectoryOnly).ToArray();
-            while (ds.Length==0 && d.Parent != null)
-            {
-                d = d.Parent;
-                if (d == null)
-                    break;
-
-                ds = d.EnumerateDirectories(".vs", SearchOption.TopDirectoryOnly).ToArray();
-            }
-
-            return d;
-        }
     }
 }

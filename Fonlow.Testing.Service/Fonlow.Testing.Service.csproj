@@ -51,6 +51,7 @@
     <Compile Include="..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="DirFunctions.cs" />
     <Compile Include="IisExpressAgent.cs" />
     <Compile Include="IisFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
