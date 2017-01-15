@@ -11,7 +11,7 @@
     <iconUrl>https://www.fonlow.com</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Setup http client resources</description>
-    <releaseNotes>Initial release</releaseNotes>
+    <releaseNotes>Give more specific warning and advise to test runner through throwing InvalidOperationException when connection with Web dependencies is having problems.</releaseNotes>
     <copyright>Copyright © Fonlow 2015-2016</copyright>
     <tags>xunit nunit mstest unittesting iisexpress iis webapi restful</tags>
      <dependencies>
