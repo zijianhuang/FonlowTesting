@@ -51,6 +51,10 @@ namespace Fonlow.Testing
                 AuthorizedClient = new HttpClient();
                 AuthorizedClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue(TokenType, AccessToken);
             }
+            else
+            {
+                throw new System.Security.Authentication.AuthenticationException($"Getting token failed for {username} at uri {baseUri}. Please check username, password and baseUri in app.config, and make sure http or httpS is all right.");
+            }
         }
 
         public Uri BaseUri { get; private set; }
@@ -121,7 +125,7 @@ namespace Fonlow.Testing
                     {
                         var error = String.Format("Please check app.config or Web dependencies. Cannot get token for {0}:{1} with Uri {2}, with status code {3} and message {4}", userName, password, baseUri, response.StatusCode, response.ReasonPhrase);
                         Trace.TraceError(error);
-                        throw new InvalidOperationException(error);
+                        throw new System.Security.Authentication.AuthenticationException(error);
                     }
 
                     var text = response.Content.ReadAsStringAsync().Result;
@@ -134,7 +138,7 @@ namespace Fonlow.Testing
                 e.Handle((innerException) =>
                 {
                     Trace.TraceWarning(innerException.Message);
-                    return true;
+                    return false;//Better to make it false here, since the test runner may shutdown before the trace message could be written to the log file.
                 });
                 return null;
             }
