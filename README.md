@@ -1,6 +1,6 @@
 # FonlowTesting
 
-For the sack of CI, TDD, BDD, unit testing and integration testing, is it a CI server mandatary like TFS, TeamCity or Bamboo etc.? 
+For the sake of CI, TDD, BDD, unit testing and integration testing, is it a CI server mandatary like TFS, TeamCity or Bamboo etc.? 
 
 If your project is not having over 1 million code statements involving more than 5 developers working around the clock, the overhead of setting up or using off-the-shelf CI environments could be quite substantial comparing to benefits. Sometimes, for small and medium projects, combining a unit testing framework like MS Test / NUnit / xUnit, along with some batch scripts, Powershell scripts as well as some light-weight helper classes could still compose a pretty healthy Continuous Integration at fairly low cost. And being able to construct and execute integration tests in a local development machine will encourage more frequent integration tests, and should make integration tests in an off-the-shelf CI server, and avoid embarrassing situation that have a CI server, but have no continuous integration but only continuous build.
 
