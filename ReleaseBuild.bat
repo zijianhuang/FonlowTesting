@@ -1,2 +1,2 @@
-"C:\Program Files (x86)\MSBuild\14.0\Bin\MsBuild.exe" FonlowTesting.msbuild  /p:DebugSymbols=false /p:DebugType=None  /p:AllowedReferenceRelatedFileExtensions=none 
+"C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\MSBuild\Current\Bin\MsBuild.exe" FonlowTesting.msbuild  /p:DebugSymbols=false /p:DebugType=None  /p:AllowedReferenceRelatedFileExtensions=none 
 pause

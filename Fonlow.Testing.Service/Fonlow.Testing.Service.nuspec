@@ -11,8 +11,8 @@
     <iconUrl>https://www.fonlow.com</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Setup and teardown of service resources in unit testing and integration testing.</description>
-    <releaseNotes>For VS 2015 update 2, the path to applicationhost.config could be found through Testing_SlnRoot="SLN_ROOT_.VS"</releaseNotes>
-    <copyright>Copyright © Fonlow 2015-2016</copyright>
+    <releaseNotes>For VS 2019 update 2, the path to applicationhost.config could be found through Testing_SlnRoot="SLN_ROOT_.VS" and Testing_SlnName="YourSlnNameWithoutFileExtension".</releaseNotes>
+    <copyright>Copyright © Fonlow 2015-2019</copyright>
     <tags>xunit nunit mstest unittesting iisexpress iis</tags>
      <dependencies>
     </dependencies>	

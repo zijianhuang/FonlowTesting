@@ -47,6 +47,7 @@ namespace Fonlow.Testing
 
                 var hostSite = System.Configuration.ConfigurationManager.AppSettings["Testing_HostSite"];
                 var hostSiteApplicationPool = System.Configuration.ConfigurationManager.AppSettings["Testing_HostSiteApplicationPool"];
+                var slnName = System.Configuration.ConfigurationManager.AppSettings["Testing_SlnName"];//for VS 2019+
                 var slnRoot = System.Configuration.ConfigurationManager.AppSettings["Testing_SlnRoot"];//for VS 2015+
                 if (slnRoot== "SLN_ROOT_.VS")
                 {
@@ -61,7 +62,7 @@ namespace Fonlow.Testing
                     }
                 }
 
-                var appHostConfig = System.IO.Path.Combine(slnRoot, @".vs\config\applicationhost.config");
+                var appHostConfig = String.IsNullOrEmpty(slnName) ? System.IO.Path.Combine(slnRoot, @".vs\config\applicationhost.config"): System.IO.Path.Combine(slnRoot, $@".vs\{slnName}\config\applicationhost.config");
                 if (!System.IO.File.Exists(appHostConfig))
                     throw new ArgumentException("app.config does not contain correct info pointing to applicationhost.config for IIS Express.");
 
