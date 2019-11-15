@@ -1,0 +1,21 @@
+{
+	"ApiSelections": {
+		"ExcludedControllerNames": [
+		],
+
+		"DataModelAssemblyNames": [
+			"DemoCoreWeb"
+		],
+
+		"CherryPickingMethods": 1
+	},
+
+	"ClientApiOutputs": {
+		"ClientLibraryProjectFolderName": "..\\..\\..\\..\\DemoCoreWeb.ClientApi",
+		"GenerateBothAsyncAndSync": true,
+		"StringAsString": true,
+		"CamelCase": true,
+
+		"Plugins": []
+	}
+}
