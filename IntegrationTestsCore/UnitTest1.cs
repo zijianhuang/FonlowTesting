@@ -1,46 +1,16 @@
-using System;
 using Xunit;
 using Fonlow.Testing;
-using DemoCoreWeb.Client;
-using DemoCoreWeb;
 
 namespace IntegrationTestsCore
 {
-	public class WhetherApiFixture : IDisposable
+	public class WhetherApiFixture : DefaultHttpClient
 	{
 		public WhetherApiFixture()
 		{
-			var baseUri = new Uri(TestingSettings.Instance.BaseUrl);
-			httpClient = new System.Net.Http.HttpClient();
-			Api = new DemoCoreWeb.Controllers.Client.WeatherForecast(this.httpClient, baseUri);
+			Api = new DemoCoreWeb.Controllers.Client.WeatherForecast(this.HttpClient, this.BaseUri);
 		}
 
 		public DemoCoreWeb.Controllers.Client.WeatherForecast Api { get; private set; }
-
-	    readonly System.Net.Http.HttpClient httpClient;
-
-		#region IDisposable pattern
-		bool disposed;
-
-		public void Dispose()
-		{
-			Dispose(true);
-			GC.SuppressFinalize(this);
-		}
-
-		protected virtual void Dispose(bool disposing)
-		{
-			if (!disposed)
-			{
-				if (disposing)
-				{
-					httpClient.Dispose();
-				}
-
-				disposed = true;
-			}
-		}
-		#endregion
 	}
 
 	[Collection("ServiceLaunch")]
