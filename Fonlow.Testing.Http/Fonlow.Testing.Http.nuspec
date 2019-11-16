@@ -8,7 +8,6 @@
     <owners>Zijian Huang</owners>
     <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
     <projectUrl>https://github.com/zijianhuang/FonlowTesting</projectUrl>
-    <iconUrl>https://www.fonlow.com</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Setup http client resources</description>
     <releaseNotes>Give more specific warning and advise to test runner through throwing InvalidOperationException when connection with Web dependencies is having problems. Upgraded to .NET Framework 4.5.2</releaseNotes>

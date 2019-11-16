@@ -2,6 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
+    <Authors>Zijian Huang</Authors>
+    <Description>Setup and teardown of service resources in unit testing and integration testing.</Description>
+    <Copyright>Copyright © Fonlow 2015-2019</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/zijianhuang/FonlowTesting</PackageProjectUrl>
+    <PackageTags>xunit nunit mstest unittesting iisexpress iis dotnet</PackageTags>
+    <NeutralLanguage>en</NeutralLanguage>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>

@@ -2,6 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Authors>Zijian Huang</Authors>
+    <Description>Setup http client resources</Description>
+    <Copyright>Copyright © Fonlow 2015-2019</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/zijianhuang/FonlowTesting</PackageProjectUrl>
+    <PackageTags>xunit nunit mstest unittesting iisexpress iis webapi restful dotnet</PackageTags>
+    <NeutralLanguage>en</NeutralLanguage>
   </PropertyGroup>
 
   <ItemGroup>

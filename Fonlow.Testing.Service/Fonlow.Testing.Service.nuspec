@@ -7,8 +7,7 @@
     <authors>Zijian Huang</authors>
     <owners>Zijian Huang</owners>
     <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
-    <projectUrl>https://www.fonlow.com</projectUrl>
-    <iconUrl>https://www.fonlow.com</iconUrl>
+    <projectUrl>https://github.com/zijianhuang/FonlowTesting</projectUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Setup and teardown of service resources in unit testing and integration testing.</description>
     <releaseNotes>For VS 2019 update 2, the path to applicationhost.config could be found through Testing_SlnRoot="SLN_ROOT_.VS" and Testing_SlnName="YourSlnNameWithoutFileExtension". Upgraded to .NET Framework 4.5.2.</releaseNotes>
