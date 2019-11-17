@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>513cdf0c-7c0d-4ec0-a235-df2548383f44</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Fonlow.Testing.HttpShared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)DefaultHttpClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DefaultHttpClientWithUsername.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HttpClientWithUsername.cs" />
+  </ItemGroup>
+</Project>

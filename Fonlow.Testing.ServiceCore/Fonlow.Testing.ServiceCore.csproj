@@ -21,4 +21,6 @@
     <ProjectReference Include="..\Fonlow.Testing.HttpCore\Fonlow.Testing.HttpCore.csproj" />
   </ItemGroup>
 
+  <Import Project="..\Fonlow.Testing.ServiceShared\Fonlow.Testing.ServiceShared.projitems" Label="Shared" />
+
 </Project>

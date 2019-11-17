@@ -24,7 +24,7 @@
 
   <Target Name="Build" Outputs="@(CollectedBuildOutput)">
     <MSBuild Projects="@(SolutionFile)" Targets="Rebuild" BuildInParallel="True"
-             Properties="BuildingSolutionFile=true; Configuration=$(Configuration); Platform=$(Platform); TargetFrameworkVersion=$(TargetFrameworkVersion); WarningLevel=3"
+             Properties="BuildingSolutionFile=true; Configuration=$(Configuration); Platform=$(Platform); WarningLevel=3"
              SkipNonexistentProjects="%(ProjectReference.SkipNonexistentProjects)">
       <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput"/>
 
