@@ -21,15 +21,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		ReleaseBuild.bat = ReleaseBuild.bat
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fonlow.Testing.HttpCore", "Fonlow.Testing.HttpCore\Fonlow.Testing.HttpCore.csproj", "{D76814F5-D572-467C-B877-CDF52D7DDE32}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fonlow.Testing.HttpCore", "Fonlow.Testing.HttpCore\Fonlow.Testing.HttpCore.csproj", "{D76814F5-D572-467C-B877-CDF52D7DDE32}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fonlow.Testing.ServiceCore", "Fonlow.Testing.ServiceCore\Fonlow.Testing.ServiceCore.csproj", "{2CC0CA44-D9DA-4F58-BF50-6B546C95731F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fonlow.Testing.ServiceCore", "Fonlow.Testing.ServiceCore\Fonlow.Testing.ServiceCore.csproj", "{2CC0CA44-D9DA-4F58-BF50-6B546C95731F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoCoreWeb", "DemoCoreWeb\DemoCoreWeb.csproj", "{0F565F06-496A-4368-A28D-B18DDBFEF21A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoCoreWeb", "DemoCoreWeb\DemoCoreWeb.csproj", "{0F565F06-496A-4368-A28D-B18DDBFEF21A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoCoreWeb.ClientApi", "DemoCoreWeb.ClientApi\DemoCoreWeb.ClientApi.csproj", "{4526EFF6-B31B-412F-BDA8-007565359EB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoCoreWeb.ClientApi", "DemoCoreWeb.ClientApi\DemoCoreWeb.ClientApi.csproj", "{4526EFF6-B31B-412F-BDA8-007565359EB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTestsCore", "IntegrationTestsCore\IntegrationTestsCore.csproj", "{DCBF5CF0-9A27-4DCC-8F12-341B8E75A4E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntegrationTestsCore", "IntegrationTestsCore\IntegrationTestsCore.csproj", "{DCBF5CF0-9A27-4DCC-8F12-341B8E75A4E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoWebApi", "DemoWebApi\DemoWebApi.csproj", "{9182C2B4-F1F0-4A8C-982D-D051B1274A72}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiTestsCore", "WebApiTestsCore\WebApiTestsCore.csproj", "{018AF92E-483B-4A3D-BBE8-21B44C8640A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,6 +81,14 @@ Global
 		{DCBF5CF0-9A27-4DCC-8F12-341B8E75A4E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCBF5CF0-9A27-4DCC-8F12-341B8E75A4E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCBF5CF0-9A27-4DCC-8F12-341B8E75A4E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9182C2B4-F1F0-4A8C-982D-D051B1274A72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9182C2B4-F1F0-4A8C-982D-D051B1274A72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9182C2B4-F1F0-4A8C-982D-D051B1274A72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9182C2B4-F1F0-4A8C-982D-D051B1274A72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{018AF92E-483B-4A3D-BBE8-21B44C8640A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{018AF92E-483B-4A3D-BBE8-21B44C8640A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{018AF92E-483B-4A3D-BBE8-21B44C8640A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{018AF92E-483B-4A3D-BBE8-21B44C8640A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -87,6 +99,7 @@ Global
 		{0F565F06-496A-4368-A28D-B18DDBFEF21A} = {A3630AD3-6DC6-4426-924A-838EEB803714}
 		{4526EFF6-B31B-412F-BDA8-007565359EB6} = {A3630AD3-6DC6-4426-924A-838EEB803714}
 		{DCBF5CF0-9A27-4DCC-8F12-341B8E75A4E7} = {A3630AD3-6DC6-4426-924A-838EEB803714}
+		{018AF92E-483B-4A3D-BBE8-21B44C8640A8} = {A3630AD3-6DC6-4426-924A-838EEB803714}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D76811D7-D87E-4579-95CC-05A9FF823F72}
