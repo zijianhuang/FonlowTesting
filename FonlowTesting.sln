@@ -18,6 +18,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{68F190A5-D31E-4259-A7D8-BC96EC10EFA3}"
 	ProjectSection(SolutionItems) = preProject
 		FonlowTesting.msbuild = FonlowTesting.msbuild
+		README.md = README.md
 		ReleaseBuild.bat = ReleaseBuild.bat
 	EndProjectSection
 EndProject
@@ -33,7 +34,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntegrationTestsCore", "Int
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoWebApi", "DemoWebApi\DemoWebApi.csproj", "{9182C2B4-F1F0-4A8C-982D-D051B1274A72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiTestsCore", "WebApiTestsCore\WebApiTestsCore.csproj", "{018AF92E-483B-4A3D-BBE8-21B44C8640A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApiTestsCore", "WebApiTestsCore\WebApiTestsCore.csproj", "{018AF92E-483B-4A3D-BBE8-21B44C8640A8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DemoServices", "DemoServices", "{5990F58B-3B71-44C4-AA3B-A4167A2E7C4E}"
 EndProject
