@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Configuration;
 
 namespace DemoCoreWeb.Controllers
 {
@@ -34,6 +35,15 @@ namespace DemoCoreWeb.Controllers
 				Summary = Summaries[rng.Next(Summaries.Length)]
 			})
 			.ToArray();
+		}
+
+		[HttpGet("appsettings")]
+		public string GetSettings()
+		{
+			var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+			var appSettingsSection = config.GetSection("appSettings");
+			var r = appSettingsSection["Demo"];
+			return r;
 		}
 	}
 }

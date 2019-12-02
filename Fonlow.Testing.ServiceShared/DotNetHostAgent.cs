@@ -20,6 +20,8 @@ namespace Fonlow.Testing
 				{
 					// WindowStyle= ProcessWindowStyle.Minimized
 					UseShellExecute = true,
+					WorkingDirectory = System.IO.Path.GetDirectoryName(TestingSettings.Instance.DotNetServiceAssemblyPath),
+					
 				};
 
 				process = Process.Start(info);

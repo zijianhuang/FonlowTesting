@@ -18,15 +18,22 @@ namespace IntegrationTestsCore
 	{
 		public UnitTest1(WhetherApiFixture fixture)
 		{
-			Api = fixture.Api;
+			api = fixture.Api;
 		}
 
-		DemoCoreWeb.Controllers.Client.WeatherForecast Api;
+		DemoCoreWeb.Controllers.Client.WeatherForecast api;
 
 		[Fact]
 		public void Test1()
 		{
-			Assert.NotEmpty(Api.Get());
+			Assert.NotEmpty(api.Get());
+		}
+
+		[Fact]
+		public void TestGetAppSettings()
+		{
+			var r = api.GetSettings();
+			Assert.Equal("OK", r);
 		}
 	}
 }

@@ -9,112 +9,142 @@
 
 namespace DemoCoreWeb.Client
 {
-	
-	
-	public class WeatherForecast : object
-	{
-		
-		private System.DateTime _Date;
-		
-		private string _Summary;
-		
-		private int _TemperatureC;
-		
-		public System.DateTime Date
-		{
-			get
-			{
-				return _Date;
-			}
-			set
-			{
-				_Date = value;
-			}
-		}
-		
-		public string Summary
-		{
-			get
-			{
-				return _Summary;
-			}
-			set
-			{
-				_Summary = value;
-			}
-		}
-		
-		public int TemperatureC
-		{
-			get
-			{
-				return _TemperatureC;
-			}
-			set
-			{
-				_TemperatureC = value;
-			}
-		}
-	}
+    
+    
+    public class WeatherForecast : object
+    {
+        
+        private System.DateTime _Date;
+        
+        private string _Summary;
+        
+        private int _TemperatureC;
+        
+        public System.DateTime Date
+        {
+            get
+            {
+                return _Date;
+            }
+            set
+            {
+                _Date = value;
+            }
+        }
+        
+        public string Summary
+        {
+            get
+            {
+                return _Summary;
+            }
+            set
+            {
+                _Summary = value;
+            }
+        }
+        
+        public int TemperatureC
+        {
+            get
+            {
+                return _TemperatureC;
+            }
+            set
+            {
+                _TemperatureC = value;
+            }
+        }
+    }
 }
 namespace DemoCoreWeb.Controllers.Client
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Threading.Tasks;
-	using System.Net.Http;
-	using Newtonsoft.Json;
-	
-	
-	public partial class WeatherForecast
-	{
-		
-		private System.Net.Http.HttpClient client;
-		
-		private System.Uri baseUri;
-		
-		public WeatherForecast(System.Net.Http.HttpClient client, System.Uri baseUri)
-		{
-			if (client == null)
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using System.Net.Http;
+    using Newtonsoft.Json;
+    
+    
+    public partial class WeatherForecast
+    {
+        
+        private System.Net.Http.HttpClient client;
+        
+        private System.Uri baseUri;
+        
+        public WeatherForecast(System.Net.Http.HttpClient client, System.Uri baseUri)
+        {
+            if (client == null)
 				throw new ArgumentNullException("client", "Null HttpClient.");
 
-			if (baseUri == null)
+            if (baseUri == null)
 				throw new ArgumentNullException("baseUri", "Null baseUri");
 
-			this.client = client;
-			this.baseUri = baseUri;
-		}
-		
-		/// <summary>
-		/// GET WeatherForecast
-		/// </summary>
-		public async Task<DemoCoreWeb.Client.WeatherForecast[]> GetAsync()
-		{
-			var requestUri = new Uri(this.baseUri, "WeatherForecast");
-			var responseMessage = await client.GetAsync(requestUri);
-			responseMessage.EnsureSuccessStatusCode();
-			var stream = await responseMessage.Content.ReadAsStreamAsync();
-			using (JsonReader jsonReader = new JsonTextReader(new System.IO.StreamReader(stream)))
-			{
-			var serializer = new JsonSerializer();
-			return serializer.Deserialize<DemoCoreWeb.Client.WeatherForecast[]>(jsonReader);
-			}
-		}
-		
-		/// <summary>
-		/// GET WeatherForecast
-		/// </summary>
-		public DemoCoreWeb.Client.WeatherForecast[] Get()
-		{
-			var requestUri = new Uri(this.baseUri, "WeatherForecast");
-			var responseMessage = this.client.GetAsync(requestUri).Result;
-			responseMessage.EnsureSuccessStatusCode();
-			var stream = responseMessage.Content.ReadAsStreamAsync().Result;
-			using (JsonReader jsonReader = new JsonTextReader(new System.IO.StreamReader(stream)))
-			{
-			var serializer = new JsonSerializer();
-			return serializer.Deserialize<DemoCoreWeb.Client.WeatherForecast[]>(jsonReader);
-			}
-		}
-	}
+            this.client = client;
+            this.baseUri = baseUri;
+        }
+        
+        /// <summary>
+        /// GET WeatherForecast
+        /// </summary>
+        public async Task<DemoCoreWeb.Client.WeatherForecast[]> GetAsync()
+        {
+            var requestUri = new Uri(this.baseUri, "WeatherForecast");
+            var responseMessage = await client.GetAsync(requestUri);
+            responseMessage.EnsureSuccessStatusCode();
+            var stream = await responseMessage.Content.ReadAsStreamAsync();
+            using (JsonReader jsonReader = new JsonTextReader(new System.IO.StreamReader(stream)))
+            {
+            var serializer = new JsonSerializer();
+            return serializer.Deserialize<DemoCoreWeb.Client.WeatherForecast[]>(jsonReader);
+            }
+        }
+        
+        /// <summary>
+        /// GET WeatherForecast
+        /// </summary>
+        public DemoCoreWeb.Client.WeatherForecast[] Get()
+        {
+            var requestUri = new Uri(this.baseUri, "WeatherForecast");
+            var responseMessage = this.client.GetAsync(requestUri).Result;
+            responseMessage.EnsureSuccessStatusCode();
+            var stream = responseMessage.Content.ReadAsStreamAsync().Result;
+            using (JsonReader jsonReader = new JsonTextReader(new System.IO.StreamReader(stream)))
+            {
+            var serializer = new JsonSerializer();
+            return serializer.Deserialize<DemoCoreWeb.Client.WeatherForecast[]>(jsonReader);
+            }
+        }
+        
+        /// <summary>
+        /// GET WeatherForecast/appsettings
+        /// </summary>
+        public async Task<string> GetSettingsAsync()
+        {
+            var requestUri = new Uri(this.baseUri, "WeatherForecast/appsettings");
+            var responseMessage = await client.GetAsync(requestUri);
+            responseMessage.EnsureSuccessStatusCode();
+            var stream = await responseMessage.Content.ReadAsStreamAsync();
+            using (System.IO.StreamReader streamReader = new System.IO.StreamReader(stream))
+            {
+            return streamReader.ReadToEnd();;
+            }
+        }
+        
+        /// <summary>
+        /// GET WeatherForecast/appsettings
+        /// </summary>
+        public string GetSettings()
+        {
+            var requestUri = new Uri(this.baseUri, "WeatherForecast/appsettings");
+            var responseMessage = this.client.GetAsync(requestUri).Result;
+            responseMessage.EnsureSuccessStatusCode();
+            var stream = responseMessage.Content.ReadAsStreamAsync().Result;
+            using (System.IO.StreamReader streamReader = new System.IO.StreamReader(stream))
+            {
+            return streamReader.ReadToEnd();;
+            }
+        }
+    }
 }

@@ -107,7 +107,7 @@ namespace Fonlow.Testing
 					var response = client.PostAsync(new Uri(baseUri, "Token"), content).Result;
 					if (!response.IsSuccessStatusCode)
 					{
-						var error = String.Format("Please check app.config or Web dependencies. Cannot get token for {0}:{1} with Uri {2}, with status code {3} and message {4}", userName, password, baseUri, response.StatusCode, response.ReasonPhrase);
+						var error = String.Format("Please check app.config or appsettings.json or Web dependencies. Cannot get token for {0}:{1} with Uri {2}, with status code {3} and message {4}", userName, password, baseUri, response.StatusCode, response.ReasonPhrase);
 						Trace.TraceError(error);
 						throw new System.Security.Authentication.AuthenticationException(error);
 					}
