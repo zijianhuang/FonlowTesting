@@ -16,12 +16,12 @@ namespace Fonlow.Testing
 		{
 			if (!String.IsNullOrWhiteSpace(TestingSettings.Instance.DotNetServiceAssemblyPath))
 			{
-				ProcessStartInfo info = new ProcessStartInfo("dotnet.exe", TestingSettings.Instance.DotNetServiceAssemblyPath)
+				var workingDirectory = System.IO.Path.GetDirectoryName(TestingSettings.Instance.DotNetServiceAssemblyPath);
+				System.IO.Directory.SetCurrentDirectory(workingDirectory); // setting ProcessStartInfo.WorkingDirectory is not always working. Working in this demo, but not working in other heavier .net core Web app.
+				var fileName = System.IO.Path.GetFileName(TestingSettings.Instance.DotNetServiceAssemblyPath);
+				ProcessStartInfo info = new ProcessStartInfo("dotnet.exe", fileName)
 				{
-					// WindowStyle= ProcessWindowStyle.Minimized
 					UseShellExecute = true,
-					WorkingDirectory = System.IO.Path.GetDirectoryName(TestingSettings.Instance.DotNetServiceAssemblyPath),
-					
 				};
 
 				process = Process.Start(info);
