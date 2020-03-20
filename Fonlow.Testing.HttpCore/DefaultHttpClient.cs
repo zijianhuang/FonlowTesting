@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Http;
 
 namespace Fonlow.Testing
 {
@@ -7,7 +8,10 @@ namespace Fonlow.Testing
 		public DefaultHttpClient()
 		{
 			BaseUri = new Uri(TestingSettings.Instance.BaseUrl);
-			HttpClient = new System.Net.Http.HttpClient();
+			HttpClient = new System.Net.Http.HttpClient(new HttpClientHandler()
+			{
+				ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+			});
 		}
 
 		public System.Net.Http.HttpClient HttpClient { get; private set; }

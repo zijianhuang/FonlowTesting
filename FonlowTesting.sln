@@ -38,15 +38,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApiTestsCore", "WebApiTe
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DemoServices", "DemoServices", "{5990F58B-3B71-44C4-AA3B-A4167A2E7C4E}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Fonlow.Testing.HttpShared", "Fonlow.Testing.HttpShared\Fonlow.Testing.HttpShared.shproj", "{513CDF0C-7C0D-4EC0-A235-DF2548383F44}"
-EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Fonlow.Testing.ServiceShared", "Fonlow.Testing.ServiceShared\Fonlow.Testing.ServiceShared.shproj", "{1AD02223-F2CC-4F13-AE0E-5E8584A1E57C}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Fonlow.Testing.ServiceShared\Fonlow.Testing.ServiceShared.projitems*{1ad02223-f2cc-4f13-ae0e-5e8584a1e57c}*SharedItemsImports = 13
-		Fonlow.Testing.HttpShared\Fonlow.Testing.HttpShared.projitems*{279819ff-2567-4021-9164-b419c690b547}*SharedItemsImports = 4
-		Fonlow.Testing.HttpShared\Fonlow.Testing.HttpShared.projitems*{513cdf0c-7c0d-4ec0-a235-df2548383f44}*SharedItemsImports = 13
+		Fonlow.Testing.ServiceShared\Fonlow.Testing.ServiceShared.projitems*{2cc0ca44-d9da-4f58-bf50-6b546c95731f}*SharedItemsImports = 5
 		Fonlow.Testing.ServiceShared\Fonlow.Testing.ServiceShared.projitems*{8f40f160-d999-4ee8-92c7-dfb335d65167}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
