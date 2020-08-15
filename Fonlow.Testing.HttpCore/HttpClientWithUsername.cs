@@ -28,7 +28,10 @@ namespace Fonlow.Testing
 			BaseUri = baseUri;
 			Username = username;
 			Password = password;
-			AnalyzeToken();
+			if (String.IsNullOrEmpty(AccessToken) || (Expiry - DateTime.Now) < TimeSpan.FromMinutes(5))
+			{
+				AnalyzeToken();
+			}
 
 			if (!String.IsNullOrEmpty(AccessToken))
 			{
@@ -51,7 +54,7 @@ namespace Fonlow.Testing
 		/// </summary>
 		public string AccessToken { get; private set; }
 
-		public DateTime Expiry { get; private set; }
+		public DateTime Expiry { get; private set; } = DateTime.Now.AddYears(-10); // Min may not be good
 
 		/// <summary>
 		/// Generally bearer

@@ -28,7 +28,10 @@ namespace Fonlow.Testing
 			BaseUri = baseUri;
 			Username = username;
 			Password = password;
-			AnalyzeToken();
+			if (String.IsNullOrEmpty(AccessToken) || (Expiry - DateTime.Now) < TimeSpan.FromMinutes(5))
+			{
+				AnalyzeToken();
+			}
 
 			if (!String.IsNullOrEmpty(AccessToken))
 			{
