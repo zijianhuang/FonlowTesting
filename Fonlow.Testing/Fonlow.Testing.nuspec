@@ -11,8 +11,8 @@
     <iconUrl>https://www.fonlow.com</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Basic setup of integration testing</description>
-    <releaseNotes> Upgraded to .NET Framework 4.5.2.</releaseNotes>
-    <copyright>Copyright © Fonlow 2015-2019</copyright>
+    <releaseNotes> Upgraded to .NET Framework 4.8.</releaseNotes>
+    <copyright>Copyright © Fonlow 2015-2021</copyright>
     <tags>xunit nunit mstest unittesting iisexpress iis webapi restful</tags>
      <dependencies>
     </dependencies>	

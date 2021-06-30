@@ -10,8 +10,8 @@
     <projectUrl>https://github.com/zijianhuang/FonlowTesting</projectUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Setup and teardown of service resources in unit testing and integration testing.</description>
-    <releaseNotes>Support launching .NET Core services</releaseNotes>
-    <copyright>Copyright © Fonlow 2015-2019</copyright>
+    <releaseNotes>Upgraded to .NET Framework 4.8</releaseNotes>
+    <copyright>Copyright © Fonlow 2015-2021</copyright>
     <tags>xunit nunit mstest unittesting iisexpress iis</tags>
      <dependencies>
        <group>

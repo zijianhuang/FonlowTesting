@@ -10,8 +10,8 @@
     <projectUrl>https://github.com/zijianhuang/FonlowTesting</projectUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Setup http client resources</description>
-    <releaseNotes>Give more specific warning and advise to test runner through throwing InvalidOperationException when connection with Web dependencies is having problems. Upgraded to .NET Framework 4.5.2</releaseNotes>
-    <copyright>Copyright © Fonlow 2015-2020</copyright>
+    <releaseNotes>Upgraded to .NET Framework 4.8.</releaseNotes>
+    <copyright>Copyright © Fonlow 2015-2021</copyright>
     <tags>xunit nunit mstest unittesting iisexpress iis webapi restful</tags>
      <dependencies>
     </dependencies>	

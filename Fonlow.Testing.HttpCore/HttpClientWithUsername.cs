@@ -39,6 +39,7 @@ namespace Fonlow.Testing
 				{
 					ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
 				});
+				AuthorizedClient.BaseAddress = BaseUri;
 				AuthorizedClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue(TokenType, AccessToken);
 			}
 			else

@@ -12,6 +12,7 @@ namespace Fonlow.Testing
 			{
 				ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
 			});
+			HttpClient.BaseAddress = BaseUri;
 		}
 
 		public System.Net.Http.HttpClient HttpClient { get; private set; }

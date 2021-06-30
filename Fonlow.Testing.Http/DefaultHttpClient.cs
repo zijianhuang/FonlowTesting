@@ -9,6 +9,7 @@ namespace Fonlow.Testing
 		{
 			BaseUri = new Uri(TestingSettings.Instance.BaseUrl);
 			HttpClient = new System.Net.Http.HttpClient();
+			HttpClient.BaseAddress = BaseUri;
 		}
 
 		public System.Net.Http.HttpClient HttpClient { get; private set; }
