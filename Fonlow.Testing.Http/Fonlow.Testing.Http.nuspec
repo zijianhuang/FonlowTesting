@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Setup http client resources</description>
     <releaseNotes>Upgraded to .NET Framework 4.8.</releaseNotes>
-    <copyright>Copyright © Fonlow 2015-2021</copyright>
+    <copyright>Copyright © Fonlow 2015-2022</copyright>
     <tags>xunit nunit mstest unittesting iisexpress iis webapi restful</tags>
      <dependencies>
     </dependencies>	

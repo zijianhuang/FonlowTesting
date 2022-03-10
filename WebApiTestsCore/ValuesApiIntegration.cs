@@ -40,9 +40,37 @@ namespace WebApiTestsCore
 		[Fact]
 		public void TestValuesDelete()
 		{
-			//var t = authorizedClient.DeleteAsync(new Uri(baseUri, "api/Values/1"));
-			//var ok = t.Result.IsSuccessStatusCode;
-			//Assert.True(ok);
+			api.Delete(1);
+		}
+	}
+
+	/// <summary>
+	/// Test with Proxy.
+	/// </summary>
+	public class ValuesApiWithProxyIntegration : IClassFixture<ValuesWithProxyFixture>
+	{
+		public ValuesApiWithProxyIntegration(ValuesWithProxyFixture fixture)
+		{
+			api = fixture.Api;
+		}
+
+		Values api;
+
+		[Fact]
+		public void TestValuesGet()
+		{
+			//var task = authorizedClient.GetStringAsync(new Uri(baseUri, "api/Values"));
+			//var text = task.Result;
+			//var array = JArray.Parse(text);
+			var array = api.Get().ToArray();
+			Assert.Equal("value2", array[1]);
+		}
+
+
+
+		[Fact]
+		public void TestValuesDelete()
+		{
 			api.Delete(1);
 		}
 	}
@@ -53,6 +81,30 @@ namespace WebApiTestsCore
 		{
 			Api = new Values(base.HttpClient, base.BaseUri);
 		}
+
+		public Values Api { get; private set; }
+	}
+
+	public class ValuesWithProxyFixture : Fonlow.Testing.DefaultHttpClient
+	{
+		public ValuesWithProxyFixture(): base(handler)
+		{
+			Api = new Values(base.HttpClient, new Uri("http://fonlow.org/"));
+		}
+
+		static readonly HttpClientHandler handler = new HttpClientHandler()
+		{
+			Proxy = new System.Net.WebProxy()
+			{
+				Address = new Uri("http://localhost:8888"), // Talk to proxy of Fiddler. Whether Fiddler is capturing traffic does not matter.
+				BypassProxyOnLocal = false,
+				//UseDefaultCredentials = proxyCredentials == null ? true : false,
+				//Credentials = proxyCredentials,
+			},
+
+			UseProxy = true,
+
+		};
 
 		public Values Api { get; private set; }
 	}

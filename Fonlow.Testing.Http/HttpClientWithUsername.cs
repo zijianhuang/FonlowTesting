@@ -11,9 +11,20 @@ namespace Fonlow.Testing
 	/// </summary>
 	public class HttpClientWithUsername : IDisposable
 	{
-		public static HttpClientWithUsername Create(Uri baseUri, string username, string password)
+		public static HttpClientWithUsername Create(Uri baseUri, string username, string password, HttpMessageHandler handler=null)
 		{
 			return new HttpClientWithUsername(baseUri, username, password);
+		}
+
+		static HttpClientHandler AcceptAnyCertificateHandler
+		{
+			get
+			{
+				return new HttpClientHandler()
+				{
+					ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+				};
+			}
 		}
 
 		/// <summary>
@@ -23,11 +34,13 @@ namespace Fonlow.Testing
 		/// <param name="baseUri"></param>
 		/// <param name="username"></param>
 		/// <param name="password"></param>
-		protected HttpClientWithUsername(Uri baseUri, string username, string password)
+		/// <param name="handler">Default AcceptAnyCertificateHandler. Injected handler should generally contains ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator </param>
+		protected HttpClientWithUsername(Uri baseUri, string username, string password, HttpMessageHandler handler = null)
 		{
 			BaseUri = baseUri;
 			Username = username;
 			Password = password;
+			this.handler = handler ?? AcceptAnyCertificateHandler;
 			if (String.IsNullOrEmpty(AccessToken) || (Expiry - DateTime.Now) < TimeSpan.FromMinutes(5))
 			{
 				AnalyzeToken();
@@ -35,7 +48,7 @@ namespace Fonlow.Testing
 
 			if (!String.IsNullOrEmpty(AccessToken))
 			{
-				AuthorizedClient = new HttpClient();
+				AuthorizedClient = new HttpClient(this.handler);
 				AuthorizedClient.BaseAddress = BaseUri;
 				AuthorizedClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue(TokenType, AccessToken);
 			}
@@ -44,6 +57,8 @@ namespace Fonlow.Testing
 				throw new System.Security.Authentication.AuthenticationException($"Getting token failed for {username} at uri {baseUri}. Please check username, password and baseUri in app.config, and make sure http or httpS is all right.");
 			}
 		}
+
+		HttpMessageHandler handler;
 
 		public Uri BaseUri { get; private set; }
 
@@ -94,7 +109,7 @@ namespace Fonlow.Testing
 		/// <param name="userName"></param>
 		/// <param name="password"></param>
 		/// <returns>Null if fails, and the error is in Trace.</returns>
-		public static string GetToken(Uri baseUri, string userName, string password)
+		public string GetToken(Uri baseUri, string userName, string password)
 		{
 			//inspired by http://www.codeproject.com/Articles/823263/ASP-NET-Identity-Introduction-to-Working-with-Iden
 			var pairs = new KeyValuePair<string, string>[]
@@ -106,7 +121,7 @@ namespace Fonlow.Testing
 			var content = new FormUrlEncodedContent(pairs);
 			try
 			{
-				using (var client = new HttpClient())
+				using (var client = new HttpClient(this.handler))
 				{
 					var response = client.PostAsync(new Uri(baseUri, "Token"), content).Result;
 					if (!response.IsSuccessStatusCode)

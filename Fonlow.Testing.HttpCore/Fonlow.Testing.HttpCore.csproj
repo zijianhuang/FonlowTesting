@@ -6,15 +6,13 @@
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Authors>Zijian Huang</Authors>
     <Description>Setup http client resources</Description>
-    <Copyright>Copyright © Fonlow 2015-2021</Copyright>
+    <Copyright>Copyright © Fonlow 2015-2022</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/zijianhuang/FonlowTesting</PackageProjectUrl>
     <PackageTags>xunit nunit mstest unittesting iisexpress iis webapi restful dotnet</PackageTags>
     <NeutralLanguage>en</NeutralLanguage>
-    <Version>2.0.1</Version>
-    <AssemblyVersion>2.0.1.0</AssemblyVersion>
-    <FileVersion>2.0.1.0</FileVersion>
-    <PackageReleaseNotes>Ignore invalid SSL certificate.</PackageReleaseNotes>
+    <Version>2.1</Version>
+    <PackageReleaseNotes>HttpMessageHandler supported.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
