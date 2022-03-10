@@ -92,7 +92,7 @@ namespace WebApiTestsCore
 			Api = new Values(base.HttpClient, new Uri("http://fonlow.org/"));
 		}
 
-		static readonly HttpClientHandler handler = new HttpClientHandler()
+		static readonly HttpMessageHandler handler = new HttpClientHandler()
 		{
 			Proxy = new System.Net.WebProxy()
 			{

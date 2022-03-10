@@ -12,7 +12,7 @@ namespace Fonlow.Testing
 		/// 
 		/// </summary>
 		/// <param name="handler">Default AcceptAnyCertificateHandler. Injected handler should generally contains ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator </param>
-		public DefaultHttpClientWithUsername(HttpClientHandler handler = null) : base(new Uri(TestingSettings.Instance.BaseUrl), TestingSettings.Instance.Username, TestingSettings.Instance.Password, handler)
+		public DefaultHttpClientWithUsername(HttpMessageHandler handler = null) : base(new Uri(TestingSettings.Instance.BaseUrl), TestingSettings.Instance.Username, TestingSettings.Instance.Password, handler)
 		{
 
 		}
