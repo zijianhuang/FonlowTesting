@@ -41,6 +41,9 @@
     <AssemblyOriginatorKeyFile>..\FonlowTesting.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.ServiceModel" />
@@ -66,6 +69,7 @@
   <ItemGroup>
     <Compile Include="IisExpressFixture.cs" />
     <Compile Include="IisFixtureTests.cs" />
+    <Compile Include="ValuesApiIntegration.cs" />
     <Compile Include="WCFTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -77,6 +81,10 @@
     <ProjectReference Include="..\Fonlow.DemoService\Fonlow.DemoService.csproj">
       <Project>{bf7e6591-cf74-4858-9f6e-8d67ecc9b47c}</Project>
       <Name>Fonlow.DemoService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fonlow.Testing.Http\Fonlow.Testing.Http.csproj">
+      <Project>{279819ff-2567-4021-9164-b419c690b547}</Project>
+      <Name>Fonlow.Testing.Http</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fonlow.Testing.Service\Fonlow.Testing.Service.csproj">
       <Project>{8f40f160-d999-4ee8-92c7-dfb335d65167}</Project>
