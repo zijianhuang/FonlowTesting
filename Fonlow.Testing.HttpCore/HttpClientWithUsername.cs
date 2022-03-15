@@ -45,7 +45,7 @@ namespace Fonlow.Testing
 
 			if (!String.IsNullOrEmpty(AccessToken))
 			{
-				AuthorizedClient = new HttpClient(this.handler);
+				AuthorizedClient = new HttpClient(this.handler, false);
 				AuthorizedClient.BaseAddress = BaseUri;
 				AuthorizedClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue(TokenType, AccessToken);
 			}
@@ -129,7 +129,7 @@ namespace Fonlow.Testing
 			var content = new FormUrlEncodedContent(pairs);
 			try
 			{
-				using (var client = new HttpClient(this.handler))
+				using (var client = new HttpClient(this.handler, false))
 				{
 					var response = client.PostAsync(new Uri(baseUri, "Token"), content).Result;
 					if (!response.IsSuccessStatusCode)

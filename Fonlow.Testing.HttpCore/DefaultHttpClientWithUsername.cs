@@ -8,11 +8,16 @@ namespace Fonlow.Testing
 	/// </summary>
 	public class DefaultHttpClientWithUsername : HttpClientWithUsername
 	{
+		public DefaultHttpClientWithUsername() : this(null)
+		{
+
+		}
+
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="handler">Default AcceptAnyCertificateHandler. Injected handler should generally contains ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator </param>
-		public DefaultHttpClientWithUsername(HttpMessageHandler handler = null) : base(new Uri(TestingSettings.Instance.BaseUrl), TestingSettings.Instance.Username, TestingSettings.Instance.Password, handler)
+		public DefaultHttpClientWithUsername(HttpMessageHandler handler) : base(new Uri(TestingSettings.Instance.BaseUrl), TestingSettings.Instance.Username, TestingSettings.Instance.Password, handler)
 		{
 
 		}
