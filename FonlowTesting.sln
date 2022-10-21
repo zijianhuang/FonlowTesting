@@ -44,6 +44,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NF", "NF", "{595AC12A-AA10-
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationWcfTests", "Tests\IntegrationWcfTests\IntegrationWcfTests.csproj", "{7381D77D-59DD-4F65-82B3-66DB95311CA3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IisExpressAgentTests", "IisExpressAgentTests\IisExpressAgentTests.csproj", "{F4DC8D31-ABD2-4FED-9B30-4250F05AD7A5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -102,6 +104,10 @@ Global
 		{7381D77D-59DD-4F65-82B3-66DB95311CA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7381D77D-59DD-4F65-82B3-66DB95311CA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7381D77D-59DD-4F65-82B3-66DB95311CA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4DC8D31-ABD2-4FED-9B30-4250F05AD7A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4DC8D31-ABD2-4FED-9B30-4250F05AD7A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4DC8D31-ABD2-4FED-9B30-4250F05AD7A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4DC8D31-ABD2-4FED-9B30-4250F05AD7A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -118,6 +124,7 @@ Global
 		{9182C2B4-F1F0-4A8C-982D-D051B1274A72} = {5990F58B-3B71-44C4-AA3B-A4167A2E7C4E}
 		{018AF92E-483B-4A3D-BBE8-21B44C8640A8} = {A3630AD3-6DC6-4426-924A-838EEB803714}
 		{7381D77D-59DD-4F65-82B3-66DB95311CA3} = {A3630AD3-6DC6-4426-924A-838EEB803714}
+		{F4DC8D31-ABD2-4FED-9B30-4250F05AD7A5} = {A3630AD3-6DC6-4426-924A-838EEB803714}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D76811D7-D87E-4579-95CC-05A9FF823F72}

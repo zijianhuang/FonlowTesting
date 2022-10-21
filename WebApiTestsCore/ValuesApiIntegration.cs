@@ -44,36 +44,36 @@ namespace WebApiTestsCore
 		}
 	}
 
-	/// <summary>
-	/// Test with Proxy.
-	/// </summary>
-	public class ValuesApiWithProxyIntegration : IClassFixture<ValuesWithProxyFixture>
-	{
-		public ValuesApiWithProxyIntegration(ValuesWithProxyFixture fixture)
-		{
-			api = fixture.Api;
-		}
+	///// <summary>
+	///// Test with Proxy http://localhost:8888
+	///// </summary>
+	//public class ValuesApiWithProxyIntegration : IClassFixture<ValuesWithProxyFixture>
+	//{
+	//	public ValuesApiWithProxyIntegration(ValuesWithProxyFixture fixture)
+	//	{
+	//		api = fixture.Api;
+	//	}
 
-		Values api;
+	//	Values api;
 
-		[Fact]
-		public void TestValuesGet()
-		{
-			//var task = authorizedClient.GetStringAsync(new Uri(baseUri, "api/Values"));
-			//var text = task.Result;
-			//var array = JArray.Parse(text);
-			var array = api.Get().ToArray();
-			Assert.Equal("value2", array[1]);
-		}
+	//	[Fact]
+	//	public void TestValuesGet()
+	//	{
+	//		//var task = authorizedClient.GetStringAsync(new Uri(baseUri, "api/Values"));
+	//		//var text = task.Result;
+	//		//var array = JArray.Parse(text);
+	//		var array = api.Get().ToArray();
+	//		Assert.Equal("value2", array[1]);
+	//	}
 
 
 
-		[Fact]
-		public void TestValuesDelete()
-		{
-			api.Delete(1);
-		}
-	}
+	//	[Fact]
+	//	public void TestValuesDelete()
+	//	{
+	//		api.Delete(1);
+	//	}
+	//}
 
 	public class ValuesFixture : Fonlow.Testing.DefaultHttpClient
 	{
