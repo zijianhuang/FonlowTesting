@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29503.13
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fonlow.DemoService", "Fonlow.DemoService\Fonlow.DemoService.csproj", "{BF7E6591-CF74-4858-9F6E-8D67ECC9B47C}"
 EndProject
@@ -42,12 +42,9 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Fonlow.Testing.ServiceShare
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NF", "NF", "{595AC12A-AA10-4D52-8855-56544C61260C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationWcfTests", "Tests\IntegrationWcfTests\IntegrationWcfTests.csproj", "{7381D77D-59DD-4F65-82B3-66DB95311CA3}"
+EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Fonlow.Testing.ServiceShared\Fonlow.Testing.ServiceShared.projitems*{1ad02223-f2cc-4f13-ae0e-5e8584a1e57c}*SharedItemsImports = 13
-		Fonlow.Testing.ServiceShared\Fonlow.Testing.ServiceShared.projitems*{2cc0ca44-d9da-4f58-bf50-6b546c95731f}*SharedItemsImports = 5
-		Fonlow.Testing.ServiceShared\Fonlow.Testing.ServiceShared.projitems*{8f40f160-d999-4ee8-92c7-dfb335d65167}*SharedItemsImports = 4
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -101,6 +98,10 @@ Global
 		{018AF92E-483B-4A3D-BBE8-21B44C8640A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{018AF92E-483B-4A3D-BBE8-21B44C8640A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{018AF92E-483B-4A3D-BBE8-21B44C8640A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7381D77D-59DD-4F65-82B3-66DB95311CA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7381D77D-59DD-4F65-82B3-66DB95311CA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7381D77D-59DD-4F65-82B3-66DB95311CA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7381D77D-59DD-4F65-82B3-66DB95311CA3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -116,8 +117,14 @@ Global
 		{DCBF5CF0-9A27-4DCC-8F12-341B8E75A4E7} = {A3630AD3-6DC6-4426-924A-838EEB803714}
 		{9182C2B4-F1F0-4A8C-982D-D051B1274A72} = {5990F58B-3B71-44C4-AA3B-A4167A2E7C4E}
 		{018AF92E-483B-4A3D-BBE8-21B44C8640A8} = {A3630AD3-6DC6-4426-924A-838EEB803714}
+		{7381D77D-59DD-4F65-82B3-66DB95311CA3} = {A3630AD3-6DC6-4426-924A-838EEB803714}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D76811D7-D87E-4579-95CC-05A9FF823F72}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Fonlow.Testing.ServiceShared\Fonlow.Testing.ServiceShared.projitems*{1ad02223-f2cc-4f13-ae0e-5e8584a1e57c}*SharedItemsImports = 13
+		Fonlow.Testing.ServiceShared\Fonlow.Testing.ServiceShared.projitems*{2cc0ca44-d9da-4f58-bf50-6b546c95731f}*SharedItemsImports = 5
+		Fonlow.Testing.ServiceShared\Fonlow.Testing.ServiceShared.projitems*{8f40f160-d999-4ee8-92c7-dfb335d65167}*SharedItemsImports = 4
 	EndGlobalSection
 EndGlobal

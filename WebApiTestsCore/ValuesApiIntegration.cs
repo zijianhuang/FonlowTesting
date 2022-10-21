@@ -89,7 +89,7 @@ namespace WebApiTestsCore
 	{
 		public ValuesWithProxyFixture(): base(handler)
 		{
-			Api = new Values(base.HttpClient, new Uri("http://fonlow.org/"));
+			Api = new Values(base.HttpClient, base.BaseUri);
 		}
 
 		static readonly HttpMessageHandler handler = new HttpClientHandler()

@@ -18,6 +18,7 @@ namespace WebApiTestsCore
 	/// <summary>
 	/// Test with Proxy.
 	/// </summary>
+	[Collection("WebApiInit")]
 	public class ValuesApiWithProxyIntegration : IClassFixture<ValuesWithProxyFixture>
 	{
 		public ValuesApiWithProxyIntegration(ValuesWithProxyFixture fixture)
@@ -50,7 +51,7 @@ namespace WebApiTestsCore
 	{
 		public ValuesWithProxyFixture(): base(handler)
 		{
-			Api = new Values(base.HttpClient, new Uri("http://fonlow.org/"));
+			Api = new Values(base.HttpClient, base.BaseUri);
 		}
 
 		static readonly HttpMessageHandler handler = new HttpClientHandler()
