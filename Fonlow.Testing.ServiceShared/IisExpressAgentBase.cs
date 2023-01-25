@@ -101,7 +101,7 @@ namespace Fonlow.Testing
 			{
 				var span = (DateTime.Now - timeStart).TotalSeconds;
 				Debug.WriteLine(String.Format("Test cases with IIS Express had run for {0} seconds.", span));
-				process.CloseMainWindow();//More graceful than Kill.
+				process.Kill();//close and closeMainWindow not working in Windows 11
 			}
 			catch (System.ComponentModel.Win32Exception e)
 			{

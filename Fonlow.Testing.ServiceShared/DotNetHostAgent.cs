@@ -44,7 +44,7 @@ namespace Fonlow.Testing
 			try
 			{
 				var span = (DateTime.Now - timeStart).TotalSeconds;
-				process.CloseMainWindow();//More graceful than Kill.
+				process.Kill();//close and closeMainWindow not working in Windows 11
 			}
 			catch (System.ComponentModel.Win32Exception e)
 			{
