@@ -8,7 +8,7 @@ namespace Fonlow.Testing
 	/// <summary>
 	/// A dictionary of HttpClientWithUserName
 	/// </summary>
-	public class AuthHttpClients
+	public class AuthHttpClients: IDisposable
 	{
 		public AuthHttpClients() : this(null)
 		{
@@ -16,9 +16,37 @@ namespace Fonlow.Testing
 
 		public AuthHttpClients(HttpMessageHandler handler)
 		{
-			TestingSettings.Instance.Users.ToDictionary(up => HttpClientWithUsername.Create(new Uri(TestingSettings.Instance.BaseUrl), up.Username, up.Password, handler));
+			Dic = TestingSettings.Instance.Users.ToDictionary(up => up.Username,
+				up => HttpClientWithUsername.Create(new Uri(TestingSettings.Instance.BaseUrl), up.Username, up.Password, handler));
 		}
 
 		public Dictionary<string, HttpClientWithUsername> Dic { get; }
+
+		bool disposed;
+
+		protected virtual void Dispose(bool disposing)
+		{
+			if (!this.disposed)
+			{
+				if (disposing)
+				{
+					if (Dic != null)
+					{
+						foreach (var item in Dic.Values)
+						{
+							item.Dispose();
+						}
+					}
+				}
+
+				this.disposed = true;
+			}
+		}
+
+		public void Dispose()
+		{
+			Dispose(true);
+			GC.SuppressFinalize(this);
+		}
 	}
 }
