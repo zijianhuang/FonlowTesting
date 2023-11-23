@@ -73,18 +73,6 @@ namespace Fonlow.Testing
 			}
 		}
 
-		///// <summary>
-		///// Explicitly define whether to use IisExpress or other external Web service that has already been running.
-		///// </summary>
-		//public static bool UseIisExpress
-		//{
-		//    get
-		//    {
-		//        var useIisExpress = System.Configuration.ConfigurationManager.AppSettings["Testing_UseIisExpress"];
-		//        return String.Equals(useIisExpress, "true", StringComparison.CurrentCultureIgnoreCase);
-		//    }
-		//}
-
 		DateTime timeStart;
 
 		Process process;

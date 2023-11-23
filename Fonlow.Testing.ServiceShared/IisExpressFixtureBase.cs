@@ -22,7 +22,7 @@ namespace Fonlow.Testing
             }
         }
        
-        IisExpressAgent iisExpressAgent;
+        readonly IisExpressAgent iisExpressAgent;
 
 
         bool disposed;

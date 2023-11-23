@@ -3,9 +3,7 @@
 namespace Fonlow.Testing
 {
 	/// <summary>
-	/// Launch IIS Express if AppSettings["Testing_UseIisExpress"] is true, using the following settings
-	/// AppSettings["Testing_HostSite"]; AppSettings["Testing_HostSiteApplicationPool"]. This class is mainly for 
-	/// launching IIS Express only once for one or multiple test classes that talk to the same Website.
+	/// Launch DotNet Kestrel Web server according what defined in TestingSettings loaded from appsettings.json
 	/// </summary>
 	public class DotNetHostFixture : IDisposable
 	{
@@ -25,7 +23,6 @@ namespace Fonlow.Testing
 
 		bool disposed;
 
-		// implements IDisposable
 		public void Dispose()
 		{
 			Dispose(true);

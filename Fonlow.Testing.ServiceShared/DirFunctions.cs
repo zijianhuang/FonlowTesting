@@ -1,31 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
 
 namespace Fonlow.Testing
 {
-    public static class DirFunctions
-    {
-        public static DirectoryInfo GetSlnDir(string dir)
-        {
-            var d = new DirectoryInfo(dir);
+	public static class DirFunctions
+	{
+		/// <summary>
+		/// Get Visual Studio Sln dir.
+		/// </summary>
+		/// <param name="dir"></param>
+		/// <returns></returns>
+		public static DirectoryInfo GetSlnDir(string dir)
+		{
+			var d = new DirectoryInfo(dir);
 
-            DirectoryInfo[] ds;
-            do
-            {
-                d = d.Parent;
-                if (d == null)
-                    break;
+			DirectoryInfo[] ds;
+			do
+			{
+				d = d.Parent;
+				if (d == null)
+					break;
 
-                ds = d.EnumerateDirectories(".vs", SearchOption.TopDirectoryOnly).ToArray();
-            }
-            while (ds.Length == 0);
+				ds = d.EnumerateDirectories(".vs", SearchOption.TopDirectoryOnly).ToArray();
+			}
+			while (ds.Length == 0);
 
-            return d;
-        }
+			return d;
+		}
 
-    }
+	}
 }

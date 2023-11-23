@@ -4,13 +4,12 @@ using System.Diagnostics;
 namespace Fonlow.Testing
 {
 	/// <summary>
-	/// For starting and stoping IIS Express
+	/// For starting and stoping DotNet Kestrel Web server.
 	/// </summary>
-	/// <remarks>The IIS Express config is at </remarks>
 	public class DotNetHostAgent
 	{
 		/// <summary>
-		/// Start IIS Express with settings in AppSettings, while Testing_UseIisExpress must be true.
+		/// Start DotNet Kestrel Web server.
 		/// </summary>
 		public void Start()
 		{
@@ -34,7 +33,7 @@ namespace Fonlow.Testing
 		Process process;
 
 		/// <summary>
-		/// Stop IIS Express along with the Website launched by this class.
+		/// Stop Kestrel launched by this agent.
 		/// </summary>
 		public void Stop()
 		{
@@ -44,7 +43,7 @@ namespace Fonlow.Testing
 			try
 			{
 				var span = (DateTime.Now - timeStart).TotalSeconds;
-				process.Kill();//close and closeMainWindow not working in Windows 11
+				process.Kill();
 			}
 			catch (System.ComponentModel.Win32Exception e)
 			{

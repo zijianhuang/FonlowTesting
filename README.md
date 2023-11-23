@@ -1,8 +1,8 @@
 # FonlowTesting
 
-For the sake of CI, TDD, BDD, unit testing and integration testing, is it a CI server mandatary like TFS, TeamCity or Bamboo etc.? 
+For the sake of CI, TDD, BDD, unit testing and integration testing, is it a CI server mandatary like TFS, TeamCity, or Bamboo etc.? 
 
-If your project is not having over 1 million code statements involving more than 5 developers working around the clock, the overhead of setting up or using off-the-shelf CI environments could be quite substantial comparing to benefits. Sometimes, for small and medium projects, combining a unit testing framework like MS Test / NUnit / xUnit, along with some batch scripts, Powershell scripts as well as some light-weight helper classes could still compose a pretty healthy Continuous Integration at fairly low cost. And being able to construct and execute integration tests in a local development machine will encourage more frequent integration tests, and then make integration tests in an off-the-shelf CI server, and avoid embarrassing situation that the team has e a CI server, but has no continuous integration but only continuous build.
+Sometimes it could be handly and costing less to setup CI environment in each dev machine. Developers endorsing XP or TDD have been doing so for years before those off-the-shelf CI products were rleased to the market.
 
 This project is to deliver some light-weight helper classes for developers to quickly constructing integration tests by individual developers on their own dev PC. Even if your team is using a CI server, the helper classes may still help carrying out a lot integration tests before reaching the CI server.
 
@@ -19,7 +19,7 @@ For more details, please read wiki at https://github.com/zijianhuang/FonlowTesti
 * [Examples](https://github.com/zijianhuang/webapiclientgenexamples/tree/master/Tests/IntegrationTests)
 
 
-### For .NET Core 6.0 +
+### For .NET Core 7.0 +
 
 * [Fonlow.Testing.ServiceCore](https://www.nuget.org/packages/Fonlow.Testing.ServiceCore/)
 * [Fonlow.Testing.HttpCore](https://www.nuget.org/packages/Fonlow.Testing.HttpCore/)
