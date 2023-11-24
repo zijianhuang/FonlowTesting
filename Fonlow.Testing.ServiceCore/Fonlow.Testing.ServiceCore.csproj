@@ -11,7 +11,7 @@
 		<NeutralLanguage>en</NeutralLanguage>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>3.0.2</Version>
+		<Version>3.1</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
