@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fonlow.DemoService", "Fonlow.DemoService\Fonlow.DemoService.csproj", "{BF7E6591-CF74-4858-9F6E-8D67ECC9B47C}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A3630AD3-6DC6-4426-924A-838EEB803714}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{68F190A5-D31E-4259-A7D8-BC96EC10EFA3}"
@@ -22,15 +20,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoCoreWeb", "DemoCoreWeb\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoCoreWeb.ClientApi", "DemoCoreWeb.ClientApi\DemoCoreWeb.ClientApi.csproj", "{4526EFF6-B31B-412F-BDA8-007565359EB6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntegrationTestsCore", "IntegrationTestsCore\IntegrationTestsCore.csproj", "{DCBF5CF0-9A27-4DCC-8F12-341B8E75A4E7}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoWebApi", "DemoWebApi\DemoWebApi.csproj", "{9182C2B4-F1F0-4A8C-982D-D051B1274A72}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApiTestsCore", "WebApiTestsCore\WebApiTestsCore.csproj", "{018AF92E-483B-4A3D-BBE8-21B44C8640A8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DemoServices", "DemoServices", "{5990F58B-3B71-44C4-AA3B-A4167A2E7C4E}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Fonlow.Testing.ServiceShared", "Fonlow.Testing.ServiceShared\Fonlow.Testing.ServiceShared.shproj", "{1AD02223-F2CC-4F13-AE0E-5E8584A1E57C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntegrationTestsCore", "Tests\IntegrationTestsCore\IntegrationTestsCore.csproj", "{1616EB5B-A461-4CD1-B88D-91803A0090C6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApiTestsCore", "Tests\WebApiTestsCore\WebApiTestsCore.csproj", "{59A4790D-4756-4181-B281-207C713126D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,10 +34,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BF7E6591-CF74-4858-9F6E-8D67ECC9B47C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BF7E6591-CF74-4858-9F6E-8D67ECC9B47C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BF7E6591-CF74-4858-9F6E-8D67ECC9B47C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BF7E6591-CF74-4858-9F6E-8D67ECC9B47C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D76814F5-D572-467C-B877-CDF52D7DDE32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D76814F5-D572-467C-B877-CDF52D7DDE32}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D76814F5-D572-467C-B877-CDF52D7DDE32}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -58,35 +50,30 @@ Global
 		{4526EFF6-B31B-412F-BDA8-007565359EB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4526EFF6-B31B-412F-BDA8-007565359EB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4526EFF6-B31B-412F-BDA8-007565359EB6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DCBF5CF0-9A27-4DCC-8F12-341B8E75A4E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DCBF5CF0-9A27-4DCC-8F12-341B8E75A4E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DCBF5CF0-9A27-4DCC-8F12-341B8E75A4E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DCBF5CF0-9A27-4DCC-8F12-341B8E75A4E7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9182C2B4-F1F0-4A8C-982D-D051B1274A72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9182C2B4-F1F0-4A8C-982D-D051B1274A72}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9182C2B4-F1F0-4A8C-982D-D051B1274A72}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9182C2B4-F1F0-4A8C-982D-D051B1274A72}.Release|Any CPU.Build.0 = Release|Any CPU
-		{018AF92E-483B-4A3D-BBE8-21B44C8640A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{018AF92E-483B-4A3D-BBE8-21B44C8640A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{018AF92E-483B-4A3D-BBE8-21B44C8640A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{018AF92E-483B-4A3D-BBE8-21B44C8640A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1616EB5B-A461-4CD1-B88D-91803A0090C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1616EB5B-A461-4CD1-B88D-91803A0090C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1616EB5B-A461-4CD1-B88D-91803A0090C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1616EB5B-A461-4CD1-B88D-91803A0090C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59A4790D-4756-4181-B281-207C713126D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59A4790D-4756-4181-B281-207C713126D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59A4790D-4756-4181-B281-207C713126D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59A4790D-4756-4181-B281-207C713126D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{BF7E6591-CF74-4858-9F6E-8D67ECC9B47C} = {5990F58B-3B71-44C4-AA3B-A4167A2E7C4E}
 		{0F565F06-496A-4368-A28D-B18DDBFEF21A} = {5990F58B-3B71-44C4-AA3B-A4167A2E7C4E}
-		{4526EFF6-B31B-412F-BDA8-007565359EB6} = {A3630AD3-6DC6-4426-924A-838EEB803714}
-		{DCBF5CF0-9A27-4DCC-8F12-341B8E75A4E7} = {A3630AD3-6DC6-4426-924A-838EEB803714}
+		{4526EFF6-B31B-412F-BDA8-007565359EB6} = {5990F58B-3B71-44C4-AA3B-A4167A2E7C4E}
 		{9182C2B4-F1F0-4A8C-982D-D051B1274A72} = {5990F58B-3B71-44C4-AA3B-A4167A2E7C4E}
-		{018AF92E-483B-4A3D-BBE8-21B44C8640A8} = {A3630AD3-6DC6-4426-924A-838EEB803714}
+		{1616EB5B-A461-4CD1-B88D-91803A0090C6} = {A3630AD3-6DC6-4426-924A-838EEB803714}
+		{59A4790D-4756-4181-B281-207C713126D3} = {A3630AD3-6DC6-4426-924A-838EEB803714}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D76811D7-D87E-4579-95CC-05A9FF823F72}
-	EndGlobalSection
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Fonlow.Testing.ServiceShared\Fonlow.Testing.ServiceShared.projitems*{1ad02223-f2cc-4f13-ae0e-5e8584a1e57c}*SharedItemsImports = 13
-		Fonlow.Testing.ServiceShared\Fonlow.Testing.ServiceShared.projitems*{2cc0ca44-d9da-4f58-bf50-6b546c95731f}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal
