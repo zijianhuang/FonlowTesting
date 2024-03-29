@@ -3,6 +3,9 @@ using System.Net.Http;
 
 namespace Fonlow.Testing
 {
+	/// <summary>
+	/// HttpClient wrapped read test settings from appsettings.json, and ignore SSL certificates.
+	/// </summary>
 	public class DefaultHttpClient : IDisposable
 	{
 		/// <summary>

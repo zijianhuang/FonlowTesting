@@ -20,9 +20,7 @@ namespace Fonlow.Testing
 			{
 				var obj = new TestingSettings();
 				var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-				//var appSettingsSection = config.GetSection("Testing");
 				config.Bind("Testing", obj);//work only when properties are not with private setter.
-				//obj.ConfigurationRoot = config;
 
 				return obj;
 			}
@@ -30,17 +28,19 @@ namespace Fonlow.Testing
 			internal static readonly TestingSettings instance = Create();
 		}
 
-		//public IConfigurationRoot ConfigurationRoot { get; set; }
-
+		//Settings for DotNet Kestrel
 		public string DotNetServiceAssemblyPath { get; set; }
 		public string BaseUrl { get; set; }
+		
 		public string Username { get; set; }
 		public string Password { get; set; }
 
+		//Settings for IIS Express
 		public string HostSite { get; set; }
 		public string HostSiteApplicationPool { get; set; }
 		public string SlnRoot { get; set; }
 		public string SlnName { get; set; }
+
 		public UsernamePassword[] Users { get; set; }
 	}
 

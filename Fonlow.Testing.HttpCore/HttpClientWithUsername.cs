@@ -75,7 +75,7 @@ namespace Fonlow.Testing
 		/// </summary>
 		public string AccessToken { get; private set; }
 
-		public DateTime Expiry { get; private set; } = DateTime.Now.AddYears(-10); // Min may not be good
+		public DateTime Expiry { get; private set; } = DateTime.Now.AddYears(-10); // Min may not be good. Just make sure expiry for now.
 
 		/// <summary>
 		/// Generally bearer

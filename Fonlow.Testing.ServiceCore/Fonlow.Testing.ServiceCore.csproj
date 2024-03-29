@@ -9,9 +9,17 @@
 		<PackageProjectUrl>https://github.com/zijianhuang/FonlowTesting</PackageProjectUrl>
 		<PackageTags>xunit nunit mstest unittesting iisexpress iis dotnet</PackageTags>
 		<NeutralLanguage>en</NeutralLanguage>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>3.1</Version>
+		<Version>3.1.1</Version>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+		<CopyDebugSymbolFilesFromPackages>true</CopyDebugSymbolFilesFromPackages>
+		<CopyDocumentationFilesFromPackages>true</CopyDocumentationFilesFromPackages>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -20,6 +28,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Fonlow.Testing.HttpCore\Fonlow.Testing.HttpCore.csproj" />
+		<None Include="README.md" Pack="true" PackagePath="\"/>
 	</ItemGroup>
-
 </Project>
