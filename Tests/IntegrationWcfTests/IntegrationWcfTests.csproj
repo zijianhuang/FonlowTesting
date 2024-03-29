@@ -68,14 +68,6 @@
       <Project>{bf7e6591-cf74-4858-9f6e-8d67ecc9b47c}</Project>
       <Name>Fonlow.DemoService</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Fonlow.Testing.Http\Fonlow.Testing.Http.csproj">
-      <Project>{279819ff-2567-4021-9164-b419c690b547}</Project>
-      <Name>Fonlow.Testing.Http</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Fonlow.Testing.Service\Fonlow.Testing.Service.csproj">
-      <Project>{8f40f160-d999-4ee8-92c7-dfb335d65167}</Project>
-      <Name>Fonlow.Testing.Service</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
