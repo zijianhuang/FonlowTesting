@@ -10,7 +10,7 @@
 		<PackageProjectUrl>https://github.com/zijianhuang/FonlowTesting</PackageProjectUrl>
 		<PackageTags>xunit nunit mstest unittesting iisexpress iis webapi restful dotnet</PackageTags>
 		<NeutralLanguage>en</NeutralLanguage>
-		<Version>3.0.3</Version>
+		<Version>3.1</Version>
 		<PackageReleaseNotes>upgraded to .NET 7. And support multiple client user credentials with class AuthHttpClients.</PackageReleaseNotes>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>

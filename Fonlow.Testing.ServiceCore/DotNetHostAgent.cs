@@ -44,7 +44,7 @@ namespace Fonlow.Testing
 			{
 				//sometimes the process exited before the kill. Then the kill may leave a ghost terminal screen. This seems to be the new behavior in Windows 11.
 				// This typically happens when I launch the Web service manually, then run the test suite which will lauch the same service using this agent class.
-				if (process.HasExited)
+				if (!process.HasExited)
 				{
 					process.Kill(true);
 				}

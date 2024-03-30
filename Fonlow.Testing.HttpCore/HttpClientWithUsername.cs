@@ -8,6 +8,7 @@ namespace Fonlow.Testing
 {
 	/// <summary>
 	/// Wrap a HttpClient instance with a bearer token initialized through username and password.
+	/// This class intentionally does not use refresh token, since it is for integration test suites which won't likely run for long hours.
 	/// </summary>
 	public class HttpClientWithUsername : IDisposable
 	{
@@ -27,6 +28,7 @@ namespace Fonlow.Testing
 		/// <summary>
 		/// Initialize HttpClient with a bear token obtained after posting username and password. To be used in a xUnit Fixture or Collection, the derived
 		/// class must have a default constructor for initializing the parameters of this constructor.
+		/// The access token is acquired from baseUri/token.
 		/// </summary>
 		/// <param name="baseUri"></param>
 		/// <param name="username"></param>
@@ -111,12 +113,12 @@ namespace Fonlow.Testing
 		}
 
 		/// <summary>
-		/// Get the token body as json text from WebApi default token path
+		/// Get the token body as json text from WebApi default token path, ending with "token".
 		/// </summary>
 		/// <param name="baseUri"></param>
 		/// <param name="userName"></param>
 		/// <param name="password"></param>
-		/// <returns>Null if fails, and the error is in Trace.</returns>
+		/// <returns>JSON text of JWT</returns>
 		public string GetToken(Uri baseUri, string userName, string password)
 		{
 			//inspired by http://www.codeproject.com/Articles/823263/ASP-NET-Identity-Introduction-to-Working-with-Iden
