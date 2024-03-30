@@ -87,9 +87,11 @@ namespace Fonlow.Testing
 
 			try
 			{
-				var span = (DateTime.Now - timeStart).TotalSeconds;
-				Debug.WriteLine(String.Format("Test cases with IIS Express had run for {0} seconds.", span));
-				process.Kill();//close and closeMainWindow not working in Windows 11
+				//sometimes the process exited before the kill. Then the kill may leave a ghost terminal screen. This seems to be the new behavior in Windows 11.
+				if (process.HasExited)
+				{
+					process.Kill(true);
+				}
 			}
 			catch (System.ComponentModel.Win32Exception e)
 			{
