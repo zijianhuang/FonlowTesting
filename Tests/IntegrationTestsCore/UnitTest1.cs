@@ -7,7 +7,7 @@ namespace IntegrationTestsCore
 	{
 		public WhetherApiFixture()
 		{
-			Api = new DemoCoreWeb.Controllers.Client.WeatherForecast(this.HttpClient, this.BaseUri);
+			Api = new DemoCoreWeb.Controllers.Client.WeatherForecast(this.HttpClient);
 		}
 
 		public DemoCoreWeb.Controllers.Client.WeatherForecast Api { get; private set; }

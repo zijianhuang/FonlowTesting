@@ -8,8 +8,6 @@ This project is to deliver some light-weight helper classes for developers to qu
 
 For more details, please read wiki at https://github.com/zijianhuang/FonlowTesting/wiki
 
-
-
 ## NuGet Packages
 
 ### For .NET Core 7.0 +
@@ -17,11 +15,3 @@ For more details, please read wiki at https://github.com/zijianhuang/FonlowTesti
 * [Fonlow.Testing.ServiceCore](https://www.nuget.org/packages/Fonlow.Testing.ServiceCore/)
 * [Fonlow.Testing.HttpCore](https://www.nuget.org/packages/Fonlow.Testing.HttpCore/)
 * [Examples](https://github.com/zijianhuang/DemoCoreWeb/tree/master/Tests/IntegrationTestsCore)
-
-### For .NET Framework 4.8 (Discontinued)
-
-* [Fonlow.Testing.Service](https://www.nuget.org/packages/Fonlow.Testing.Service/)
-* [Fonlow.Testing.Http](https://www.nuget.org/packages/Fonlow.Testing.Http/)
-* [Examples](https://github.com/zijianhuang/webapiclientgenexamples/tree/master/Tests/IntegrationTests)
-
-Tag LastNFSupport marks the last snapshot with .NET Framework supports. If you want to continue the support for .NET Framework, you may fork from that tag which includes libraries and integration test suites.
