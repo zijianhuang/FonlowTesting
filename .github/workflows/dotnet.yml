@@ -26,5 +26,7 @@ jobs:
       run: dotnet build --no-restore
     - name: Check Ports
       run: ss -lntu
+    - name: Open Port 5000
+      run: netstat -na | grep :4000
     - name: Test
       run: dotnet test --no-build --verbosity normal
