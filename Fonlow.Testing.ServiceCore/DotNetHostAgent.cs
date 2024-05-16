@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using Xunit.Abstractions;
 
 namespace Fonlow.Testing
 {
@@ -18,13 +19,15 @@ namespace Fonlow.Testing
 				var workingDirectory = System.IO.Path.GetDirectoryName(TestingSettings.Instance.DotNetServiceAssemblyPath);
 				System.IO.Directory.SetCurrentDirectory(workingDirectory); // setting ProcessStartInfo.WorkingDirectory is not always working. Working in this demo, but not working in other heavier .net core Web app.
 				var fileName = System.IO.Path.GetFileName(TestingSettings.Instance.DotNetServiceAssemblyPath);
-				ProcessStartInfo info = new ProcessStartInfo("dotnet.exe", fileName)
+				ProcessStartInfo info = new ProcessStartInfo("dotnet", fileName)
 				{
 					UseShellExecute = true,
 				};
 
+				Console.WriteLine($"Starting dotnet {fileName} ...");
 				process = Process.Start(info);
 				timeStart = DateTime.Now;
+				Console.WriteLine($"Started: dotnet {fileName} at {timeStart}");
 			}
 		}
 
@@ -37,8 +40,12 @@ namespace Fonlow.Testing
 		/// </summary>
 		public void Stop()
 		{
+			Console.WriteLine("Stopping DotNetHostAgent");
 			if (process == null)
+			{
+				Console.WriteLine("DotNetHostAgent process null.");
 				return;
+			}
 
 			try
 			{
@@ -47,15 +54,16 @@ namespace Fonlow.Testing
 				if (!process.HasExited)
 				{
 					process.Kill(true);
+					Console.WriteLine($"Stopped successfully: {process.StartInfo.Arguments}");
 				}
 			}
 			catch (System.ComponentModel.Win32Exception e)
 			{
-				Trace.TraceWarning(e.Message);
+				Console.Error.WriteLine("Error: " + e.Message);
 			}
 			catch (InvalidOperationException e)
 			{
-				Trace.TraceWarning(e.Message);
+				Console.Error.WriteLine("Error: " + e.Message);
 			}
 		}
 	}
