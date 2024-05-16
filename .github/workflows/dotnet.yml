@@ -24,9 +24,9 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
-    - name: Check Ports
-      run: ss -lntu
     - name: Open Port 5000
       run: sudo ufw allow 5000
+    - name: Check Ports
+      run: ss -lntu
     - name: Test
       run: dotnet test --no-build --verbosity normal
