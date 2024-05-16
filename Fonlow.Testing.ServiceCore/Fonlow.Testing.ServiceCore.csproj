@@ -4,6 +4,7 @@
 		<TargetFramework>net8.0</TargetFramework>
 		<Authors>Zijian Huang</Authors>
 		<Description>Setup and teardown of service resources in unit testing and integration testing.</Description>
+		<PackageReleaseNotes>upgraded to .NET 8. Linux and Github Actions friendly.</PackageReleaseNotes>
 		<Copyright>Copyright © Fonlow 2015-2024</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/zijianhuang/FonlowTesting</PackageProjectUrl>
