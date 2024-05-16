@@ -27,6 +27,6 @@ jobs:
     - name: Open Port 5000
       run: sudo ufw allow 5000/tcp
     - name: Check Ports
-      run: ss -lntu
+      run: netstat -lntu
     - name: Test
       run: dotnet test --no-build --verbosity normal
