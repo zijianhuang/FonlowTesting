@@ -16,21 +16,21 @@ namespace Fonlow.Testing
 		{
 			if (!String.IsNullOrWhiteSpace(TestingSettings.Instance.DotNetServiceAssemblyPath))
 			{
-				var workingDirectory = System.IO.Path.GetDirectoryName(TestingSettings.Instance.DotNetServiceAssemblyPath);
-				System.IO.Directory.SetCurrentDirectory(workingDirectory); // setting ProcessStartInfo.WorkingDirectory is not always working. Working in this demo, but not working in other heavier .net core Web app.
-				var fileName = System.IO.Path.GetFileName(TestingSettings.Instance.DotNetServiceAssemblyPath);
-				ProcessStartInfo info = new ProcessStartInfo("dotnet", fileName)
+				//var workingDirectory = System.IO.Path.GetDirectoryName(TestingSettings.Instance.DotNetServiceAssemblyPath);
+				//System.IO.Directory.SetCurrentDirectory(workingDirectory); // setting ProcessStartInfo.WorkingDirectory is not always working. Working in this demo, but not working in other heavier .net core Web app.
+				//var fileName = System.IO.Path.GetFileName(TestingSettings.Instance.DotNetServiceAssemblyPath);
+				ProcessStartInfo info = new ProcessStartInfo("dotnet", TestingSettings.Instance.DotNetServiceAssemblyPath)
 				{
 					UseShellExecute = true,
 				};
 
-				Console.WriteLine($"Starting dotnet {fileName} ...");
+				Console.WriteLine($"Starting dotnet {TestingSettings.Instance.DotNetServiceAssemblyPath} ...");
 				process = Process.Start(info);
 				timeStart = DateTime.Now;
-				Console.WriteLine($"Started: dotnet {fileName} at {timeStart}");
-				System.Threading.Thread.Sleep(1000);
+				Console.WriteLine($"Started: dotnet {TestingSettings.Instance.DotNetServiceAssemblyPath} at {timeStart}");
+				System.Threading.Thread.Sleep(5000);
 				timeStart = DateTime.Now;
-				Console.WriteLine($"Wait a second: dotnet {fileName} at {timeStart}");
+				Console.WriteLine($"Wait a second: dotnet {TestingSettings.Instance.DotNetServiceAssemblyPath} at {timeStart}");
 
 			}
 		}
