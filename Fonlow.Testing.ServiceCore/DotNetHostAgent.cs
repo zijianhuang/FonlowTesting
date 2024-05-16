@@ -28,6 +28,10 @@ namespace Fonlow.Testing
 				process = Process.Start(info);
 				timeStart = DateTime.Now;
 				Console.WriteLine($"Started: dotnet {fileName} at {timeStart}");
+				System.Threading.Thread.Sleep(1000);
+				timeStart = DateTime.Now;
+				Console.WriteLine($"Wait a second: dotnet {fileName} at {timeStart}");
+
 			}
 		}
 
