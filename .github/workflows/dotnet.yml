@@ -25,7 +25,7 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: Open Port 5000
-      run: sudo ufw allow 5000
+      run: sudo ufw allow 5000/tcp
     - name: Check Ports
       run: ss -lntu
     - name: Test
