@@ -24,8 +24,8 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
-    - name: Open Port 5000
-      run: ss -na | grep :5000
+    - name: Run DemoCoreWeb
+      run: pwsh ./StartCoreWebApi.ps1
     - name: Check Ports
       run: netstat -lntu
     - name: Test
