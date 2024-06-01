@@ -21,15 +21,12 @@ namespace Fonlow.Testing
 			}
 		}
 
-		public ServiceCommand[] ServiceCommands => TestingSettings.Instance.ServiceCommands;
-
 		List<ServiceCommandAgent> serviceCommandAgents = new List<ServiceCommandAgent>();
 
 		bool disposed;
 
 		public void Dispose()
 		{
-			Console.WriteLine("ServiceCommandsFixture is being disposed.");
 			Dispose(true);
 			GC.SuppressFinalize(this);
 		}

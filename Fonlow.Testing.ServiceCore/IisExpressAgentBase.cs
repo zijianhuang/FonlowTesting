@@ -50,6 +50,7 @@ namespace Fonlow.Testing
 		{
 			get
 			{
+#pragma warning disable CA1065
 				if (SlnRoot== "SLN_ROOT_.VS")
 				{
 					var d = DirFunctions.GetSlnDir(System.IO.Directory.GetCurrentDirectory());
@@ -65,8 +66,10 @@ namespace Fonlow.Testing
 
 				var appHostConfig = String.IsNullOrEmpty(SlnName) ? System.IO.Path.Combine(SlnRoot, @".vs\config\applicationhost.config"): System.IO.Path.Combine(SlnRoot, $@".vs\{SlnName}\config\applicationhost.config");
 				if (!System.IO.File.Exists(appHostConfig))
+				{
 					throw new ArgumentException("app.config does not contain correct info pointing to applicationhost.config for IIS Express.");
-
+				}
+#pragma warning restore CA1065
 				var iisStartArguments = String.IsNullOrEmpty(SlnRoot) ? String.Format("/site:\"{0}\" /apppool:\"{1}\"", HostSite, HostSiteApplicationPool)
 					: String.Format("/site:\"{0}\" /apppool:\"{1}\" /config:\"{2}\"", HostSite, HostSiteApplicationPool, appHostConfig);
 				return iisStartArguments;

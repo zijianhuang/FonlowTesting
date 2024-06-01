@@ -25,7 +25,6 @@ namespace Fonlow.Testing
 
 		public void Dispose()
 		{
-			Console.WriteLine("DotNetHostFixture is being disposed.");
 			Dispose(true);
 			GC.SuppressFinalize(this);
 		}

@@ -74,7 +74,7 @@ namespace Fonlow.Testing
 		public string Arguments { get; set; }
 
 		/// <summary>
-		/// Some services may take some seconds to launch then listen.
+		/// Some services may take some seconds to launch then listen, especially in GitHub Actions which VM/container could be slow. A good bet may be 5 seconds.
 		/// </summary>
 		public int Delay { get; set; }
 		public string ConnectionString{ get; set; }

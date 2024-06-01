@@ -128,7 +128,7 @@ namespace Fonlow.Testing
 							new KeyValuePair<string, string>( "username", userName ),
 							new KeyValuePair<string, string> ( "password", password )
 						};
-			var content = new FormUrlEncodedContent(pairs);
+			using var content = new FormUrlEncodedContent(pairs);
 			try
 			{
 				using (var client = new HttpClient(this.handler, false))
