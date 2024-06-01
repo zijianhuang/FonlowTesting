@@ -10,7 +10,7 @@
 		<PackageProjectUrl>https://github.com/zijianhuang/FonlowTesting</PackageProjectUrl>
 		<PackageTags>xunit nunit mstest unittesting iisexpress iis webapi restful dotnet</PackageTags>
 		<NeutralLanguage>en</NeutralLanguage>
-		<Version>3.2</Version>
+		<Version>3.3</Version>
 		<PackageReleaseNotes>Upgraded to .NET 8.</PackageReleaseNotes>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>

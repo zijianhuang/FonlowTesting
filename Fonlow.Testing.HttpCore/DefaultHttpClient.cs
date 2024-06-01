@@ -8,10 +8,6 @@ namespace Fonlow.Testing
 	/// </summary>
 	public class DefaultHttpClient : IDisposable
 	{
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="handler">Default AcceptAnyCertificateHandler. Injected handler should generally contains ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator </param>
 		public DefaultHttpClient(HttpMessageHandler handler)
 		{
 			BaseUri = new Uri(TestingSettings.Instance.BaseUrl);
@@ -36,7 +32,7 @@ namespace Fonlow.Testing
 
 		public System.Net.Http.HttpClient HttpClient { get; private set; }
 
-		public Uri BaseUri { get; private set; }
+		public Uri BaseUri { get; protected set; }
 
 		#region IDisposable pattern
 		bool disposed;

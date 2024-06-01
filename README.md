@@ -15,3 +15,11 @@ For more details, please read wiki at https://github.com/zijianhuang/FonlowTesti
 * [Fonlow.Testing.ServiceCore](https://www.nuget.org/packages/Fonlow.Testing.ServiceCore/)
 * [Fonlow.Testing.HttpCore](https://www.nuget.org/packages/Fonlow.Testing.HttpCore/)
 * [Examples](https://github.com/zijianhuang/DemoCoreWeb/tree/master/Tests/IntegrationTestsCore)
+
+# Alternatives
+
+The libraries of helper classes have been developed since the .NET Framework era. These days since .NET Core, there have been more well designed libraries around:
+
+* [Functional Testing ASP.NET Core Apps](https://learn.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/test-asp-net-core-mvc-apps#functional-testing-aspnet-core-apps)
+* [Docker Compose Fixture](https://github.com/devjoes/DockerComposeFixture)
+* [Integration Test with .Net Core and Docker](https://ademcatamak.medium.com/integration-test-with-net-core-and-docker-21b241f7372)
