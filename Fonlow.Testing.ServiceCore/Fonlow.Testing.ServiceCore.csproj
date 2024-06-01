@@ -5,7 +5,7 @@
 		<Authors>Zijian Huang</Authors>
 		<Description>Setup and teardown of service resources in unit testing and integration testing.</Description>
 		<PackageReleaseNotes>upgraded to .NET 8. Linux and Github Actions friendly.</PackageReleaseNotes>
-		<Copyright>Copyright © Fonlow 2015-2024</Copyright>
+		<Copyright>Copyright © Fonlow 2015-$([System.DateTime]::Now.Year)</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/zijianhuang/FonlowTesting</PackageProjectUrl>
 		<PackageTags>xunit nunit mstest unittesting iisexpress iis dotnet</PackageTags>
@@ -13,6 +13,7 @@
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<Version>3.4</Version>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<AnalysisLevel>latest-all</AnalysisLevel>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

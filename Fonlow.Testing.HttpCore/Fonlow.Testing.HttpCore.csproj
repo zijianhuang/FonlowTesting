@@ -5,7 +5,7 @@
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<Authors>Zijian Huang</Authors>
 		<Description>Setup http client resources</Description>
-		<Copyright>Copyright © Fonlow 2015-2024</Copyright>
+		<Copyright>Copyright © Fonlow 2015-$([System.DateTime]::Now.Year)</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/zijianhuang/FonlowTesting</PackageProjectUrl>
 		<PackageTags>xunit nunit mstest unittesting iisexpress iis webapi restful dotnet</PackageTags>
@@ -13,6 +13,7 @@
 		<Version>3.3</Version>
 		<PackageReleaseNotes>Upgraded to .NET 8.</PackageReleaseNotes>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<AnalysisLevel>latest-all</AnalysisLevel>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

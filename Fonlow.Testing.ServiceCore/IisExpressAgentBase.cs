@@ -93,13 +93,9 @@ namespace Fonlow.Testing
 					process.Kill(true);
 				}
 			}
-			catch (System.ComponentModel.Win32Exception e)
+			catch (Exception ex) when (ex is System.ComponentModel.Win32Exception || ex is InvalidOperationException || ex is NotSupportedException)
 			{
-				Trace.TraceWarning(e.Message);
-			}
-			catch (InvalidOperationException e)
-			{
-				Trace.TraceWarning(e.Message);
+				Trace.TraceWarning(ex.Message);
 			}
 		}
 	}

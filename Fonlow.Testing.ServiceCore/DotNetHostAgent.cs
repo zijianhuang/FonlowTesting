@@ -57,13 +57,9 @@ namespace Fonlow.Testing
 					Console.WriteLine($"Stopped successfully: {process.StartInfo.Arguments}");
 				}
 			}
-			catch (System.ComponentModel.Win32Exception e)
+			catch (Exception ex) when (ex is System.ComponentModel.Win32Exception || ex is InvalidOperationException || ex is NotSupportedException)
 			{
-				Console.Error.WriteLine("Error: " + e.Message);
-			}
-			catch (InvalidOperationException e)
-			{
-				Console.Error.WriteLine("Error: " + e.Message);
+				Console.Error.WriteLine("Error: " + ex.Message);
 			}
 		}
 	}

@@ -4,7 +4,7 @@ using System.Net.Http;
 namespace Fonlow.Testing
 {
 	/// <summary>
-	/// Used together with ServiceCommandsFixture and ServiceCommandAgent. HttpClient wrapped read test settings from appsettings.json, and ignore SSL certificates.
+	/// Similar to DefaultHttpClient, but being used together with ServiceCommandsFixture and ServiceCommandAgent.
 	/// </summary>
 	public class BasicHttpClient : IDisposable
 	{
