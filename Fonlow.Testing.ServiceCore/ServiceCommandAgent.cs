@@ -20,10 +20,27 @@ namespace Fonlow.Testing
 		/// </summary>
 		public void Start()
 		{
-			ProcessStartInfo info = new ProcessStartInfo(ServicCommand.CommandPath, ServicCommand.Arguments)
+			ProcessStartInfo info;
+			var dir = System.IO.Path.GetDirectoryName(ServicCommand.CommandPath);
+			if (string.IsNullOrEmpty(dir))
 			{
-				UseShellExecute = true,
-			};
+				info = new ProcessStartInfo(ServicCommand.CommandPath, ServicCommand.Arguments)
+				{
+					UseShellExecute = true,
+				};
+			}
+			else
+			{
+				string command = System.IO.Path.GetFileName(ServicCommand.CommandPath);
+				string workingDir = System.IO.Path.GetFullPath(dir);
+				info = new ProcessStartInfo(command, ServicCommand.Arguments)
+				{
+					UseShellExecute = true,
+					WorkingDirectory = workingDir
+				};
+
+				Console.WriteLine($"Working Dir: {workingDir}; Current Dir: {System.IO.Directory.GetCurrentDirectory()}");
+			}
 
 			Console.WriteLine($"Starting {ServicCommand.CommandPath} {ServicCommand.Arguments} ...");
 			process = Process.Start(info);
