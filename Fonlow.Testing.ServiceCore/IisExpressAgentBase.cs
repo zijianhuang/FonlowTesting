@@ -3,11 +3,12 @@ using System.Diagnostics;
 
 namespace Fonlow.Testing
 {
-	/// <summary>
-	/// For starting and stoping IIS Express
-	/// </summary>
-	/// <remarks>The IIS Express config is at </remarks>
-	public class IisExpressAgentBase
+    /// <summary>
+    /// For starting and stoping IIS Express
+    /// </summary>
+    /// <remarks>The IIS Express config is at </remarks>
+    [Obsolete("In favor of ServiceCommandAgent")]
+    public class IisExpressAgentBase
 	{
 		public IisExpressAgentBase(string hostSite, string hostSiteApplicationPool, string slnName, string slnRoot)
 		{

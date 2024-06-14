@@ -6,6 +6,7 @@ namespace Fonlow.Testing
 	/// <summary>
 	/// For starting and stoping DotNet Kestrel Web server.
 	/// </summary>
+	[Obsolete("In favor of ServiceCommandAgent")]
 	public class DotNetHostAgent
 	{
 		/// <summary>

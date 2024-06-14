@@ -8,6 +8,7 @@ namespace Fonlow.Testing
     /// AppSettings["Testing_HostSite"]; AppSettings["Testing_HostSiteApplicationPool"]. This class is mainly for 
     /// launching IIS Express only once for one or multiple test classes that talk to the same Website.
     /// </summary>
+    [Obsolete("In favor of ServiceCommandFixture")]
     public class IisExpressFixtureBase : IDisposable
     {
         /// <summary>

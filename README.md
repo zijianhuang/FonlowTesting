@@ -1,16 +1,16 @@
 # FonlowTesting
 
-For the sake of CI, TDD, BDD, unit testing and integration testing, is it a CI server mandatary like TFS, TeamCity, or Bamboo etc.? 
+For the sake of CI, TDD, BDD, unit testing and integration testing, is it a CI server mandatory like TFS, TeamCity, Bamboo or Azure DevOps etc.? 
 
-Sometimes it could be handly and costing less to setup CI environment in each dev machine. Developers endorsing XP or TDD have been doing so for years before those off-the-shelf CI products were released to the market.
+Sometimes it could be handy and costing less to setup CI environment in each dev machine. Developers endorsing XP or TDD have been doing so for years before those off-the-shelf CI products were released to the market for team CI/CD.
 
-This project is to deliver some light-weight helper classes for developers to quickly constructing integration tests by individual developers on their own dev PC. Even if your team is using a CI server, the helper classes may still help carrying out a lot integration tests before reaching the CI server.
+This project is to deliver some light-weight helper classes for developers to quickly construct integration tests by individual developers on their own dev PC. Even if your team is using a team CI/CD server, the helper classes may still help carrying out a lot integration tests before reaching the CI server. Also, if a test suite can take good care of setting up dependencies and tearing down them, the scripts/configuration on the team CI/CD server could be simplified, and the locked-in effect on a particular brand of team CI/CD product could be the least.
 
 For more details, please read wiki at https://github.com/zijianhuang/FonlowTesting/wiki
 
 ## NuGet Packages
 
-### For .NET Core 7.0 +
+### For .NET Core 8.0 +
 
 * [Fonlow.Testing.ServiceCore](https://www.nuget.org/packages/Fonlow.Testing.ServiceCore/)
 * [Fonlow.Testing.HttpCore](https://www.nuget.org/packages/Fonlow.Testing.HttpCore/)

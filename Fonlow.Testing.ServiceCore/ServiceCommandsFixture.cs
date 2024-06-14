@@ -15,6 +15,7 @@ namespace Fonlow.Testing
 		{
 			foreach (var item in TestingSettings.Instance.ServiceCommands)
 			{
+				item.Arguments = item.Arguments?.Replace("{BuildConfiguration}", TestingSettings.Instance.BuildConfiguration);
 				var serviceCommandAgent = new ServiceCommandAgent(item);
 				serviceCommandAgent.Start();
 				serviceCommandAgents.Add(serviceCommandAgent);

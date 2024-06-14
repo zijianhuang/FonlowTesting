@@ -2,10 +2,11 @@
 
 namespace Fonlow.Testing
 {
-	/// <summary>
-	/// Launch DotNet Kestrel Web server according what defined in TestingSettings loaded from appsettings.json
-	/// </summary>
-	public class DotNetHostFixture : IDisposable
+    /// <summary>
+    /// Launch DotNet Kestrel Web server according what defined in TestingSettings loaded from appsettings.json
+    /// </summary>
+    [Obsolete("In favor of ServiceCommandFixture")]
+    public class DotNetHostFixture : IDisposable
 	{
 		/// <summary>
 		/// Create the fixture. And this constructor is also used in XUnit.ICollectionFixture.
