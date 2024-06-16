@@ -6,6 +6,7 @@ namespace Fonlow.Testing
 	/// <summary>
 	/// HttpClient wrapped read test settings from appsettings.json, and ignore SSL certificates.
 	/// </summary>
+	[Obsolete("In favour of BasicHttpClient")]
 	public class DefaultHttpClient : IDisposable
 	{
 		public DefaultHttpClient(HttpMessageHandler handler)

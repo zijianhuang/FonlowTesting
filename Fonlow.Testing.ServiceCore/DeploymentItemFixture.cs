@@ -4,6 +4,10 @@ using System.IO;
 
 namespace Fonlow.Testing
 {
+	/// <summary>
+	/// Copy files from source to destination. If file exists, copy only newer.
+	/// </summary>
+	[Obsolete("In favour of PowerShell scripts")]
 	public class DeploymentItemFixture
 	{
 		public DeploymentItemFixture()

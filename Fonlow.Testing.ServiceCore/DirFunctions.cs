@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 
 namespace Fonlow.Testing
@@ -10,6 +11,7 @@ namespace Fonlow.Testing
 		/// </summary>
 		/// <param name="dir"></param>
 		/// <returns></returns>
+		[Obsolete("IIS Legacy")]
 		public static DirectoryInfo GetSlnDir(string dir)
 		{
 			var d = new DirectoryInfo(dir);

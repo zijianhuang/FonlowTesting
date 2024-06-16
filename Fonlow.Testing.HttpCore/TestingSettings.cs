@@ -1,10 +1,16 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 
 namespace Fonlow.Testing
 {
+    /// <summary>
+    /// Data model of the "Testing" section "appsettings.json" and optionally "appsettings.BuildConfiguration.json"; 
+    /// and the singleton object to access the settings read from the JSON files
+    /// </summary>
     public sealed class TestingSettings
     {
         private TestingSettings()
@@ -40,8 +46,41 @@ namespace Fonlow.Testing
 
             static string GetBuildConfiguration()
             {
-                var assemblyConfigurationAttribute = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyConfigurationAttribute>();
-                return assemblyConfigurationAttribute?.Configuration;
+                var executingAssembly = Assembly.GetExecutingAssembly();
+                var location = executingAssembly.Location;
+                var dir = Path.GetDirectoryName(location);
+                var pathNames = Directory.GetFiles(dir, "*.dll");
+                List<Assembly> testAssemblies = new List<Assembly>();
+                foreach (var p in pathNames)
+                {
+                    try
+                    {
+                        var a = Assembly.LoadFile(p);
+                        var referencedAssemblies = a.GetReferencedAssemblies();
+                        if (referencedAssemblies.Any(d => d.Name == "xunit.core") && !Path.GetFileName(p).StartsWith("xunit.", StringComparison.OrdinalIgnoreCase))
+                        {
+                            testAssemblies.Add(a);
+                        }
+                    }
+                    catch (FileLoadException)
+                    {
+                        continue;
+                    }
+                    catch (BadImageFormatException)
+                    {
+                        continue;
+                    }
+                }
+
+                if (testAssemblies.Count > 0)
+                {
+                    var assemblyConfigurationAttribute = testAssemblies[0].GetCustomAttribute<AssemblyConfigurationAttribute>();
+                    return assemblyConfigurationAttribute?.Configuration;
+                }
+                else
+                {
+                    return "Debug";
+                }
             }
         }
 
@@ -86,7 +125,7 @@ namespace Fonlow.Testing
 
         /// <summary>
         /// Build configuration such as Debug, Release or whatever custom build configuration. 
-        /// ServiceCommandFixture will replace {BuildConfiguration} in arguments with this.
+        /// ServiceCommandFixture will replace {BuildConfiguration} in commandPath and arguments with this.
         /// </summary>
         public string BuildConfiguration { get; private set; }
     }
@@ -108,5 +147,11 @@ namespace Fonlow.Testing
         public int Delay { get; set; }
         public string ConnectionString { get; set; }
         public string BaseUrl { get; set; }
+
+        /// <summary>
+        /// For testing with many different user credentials with different authorization.
+        /// </summary>
+        /// <remarks>Obviously 2FA and alike are not welcome. Good enough for integration tests, but not E2E.</remarks>
+        public UsernamePassword[] Users { get; set; }
     }
 }

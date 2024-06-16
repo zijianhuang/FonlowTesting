@@ -8,6 +8,7 @@ namespace Fonlow.Testing
 	/// <summary>
 	/// A dictionary of HttpClientWithUserName
 	/// </summary>
+	[Obsolete("In favour of derived classes of HttpClientWithUsername in the integration test suites")]
 	public class AuthHttpClients: IDisposable
 	{
 		public AuthHttpClients() : this(null)

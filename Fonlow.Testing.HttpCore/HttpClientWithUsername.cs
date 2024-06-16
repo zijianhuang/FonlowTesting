@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
-using Newtonsoft.Json.Linq;
+using System.Text.Json.Nodes;
+//using Newtonsoft.Json.Linq;
 
 namespace Fonlow.Testing
 {
@@ -102,7 +103,7 @@ namespace Fonlow.Testing
 			if (String.IsNullOrEmpty(text))
 				return;
 
-			var jObject = JObject.Parse(text);
+			var jObject = JsonObject.Parse(text);
 			var accessTokenObject = jObject["access_token"];
 			var expiriesInObject = jObject["expires_in"];
 			var tokenTypeObject = jObject["token_type"];

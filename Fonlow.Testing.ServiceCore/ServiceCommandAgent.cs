@@ -36,7 +36,7 @@ namespace Fonlow.Testing
 				info = new ProcessStartInfo(command, ServicCommand.Arguments)
 				{
 					UseShellExecute = true,
-					WorkingDirectory = workingDir
+					WorkingDirectory = workingDir,
 				};
 
 				Console.WriteLine($"Working Dir: {workingDir}; Current Dir: {System.IO.Directory.GetCurrentDirectory()}");

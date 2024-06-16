@@ -15,8 +15,12 @@ This project is to deliver some light-weight helper classes for developers to qu
 
 ### For .NET Core 8.0 +
 
-* [Fonlow.Testing.ServiceCore](https://www.nuget.org/packages/Fonlow.Testing.ServiceCore/)
-* [Fonlow.Testing.HttpCore](https://www.nuget.org/packages/Fonlow.Testing.HttpCore/)
+* Package [Fonlow.Testing.ServiceCore](https://www.nuget.org/packages/Fonlow.Testing.ServiceCore/)
+	* Class [ServiceCommandsFixture](https://github.com/zijianhuang/FonlowTesting/blob/master/Fonlow.Testing.ServiceCore/ServiceCommandsFixture.cs)
+* Package [Fonlow.Testing.HttpCore](https://www.nuget.org/packages/Fonlow.Testing.HttpCore/)
+	* Class [BasicHttpClient](https://github.com/zijianhuang/FonlowTesting/blob/master/Fonlow.Testing.HttpCore/BasicHttpClient.cs)
+	* Class [HttpClientWithUsername](https://github.com/zijianhuang/FonlowTesting/blob/master/Fonlow.Testing.HttpCore/HttpClientWithUsername.cs)
+	* Class [TestingSettings](https://github.com/zijianhuang/FonlowTesting/blob/master/Fonlow.Testing.HttpCore/TestingSettings.cs)
 * [Examples of Integration Test Suite](https://github.com/zijianhuang/DemoCoreWeb/tree/master/Tests/ServiceCommandIntegrationTests)
 
 ## Examples
@@ -24,29 +28,34 @@ This project is to deliver some light-weight helper classes for developers to qu
 appsettings.json:
 ```json
 {
-    "Testing": {
-        "ServiceCommands": [
-            {
-                "CommandPath": "../../../../../PoemsMyDbCreator/bin/{BuildConfiguration}/net8.0/PoemsMyDbCreator.exe",
-                "Arguments": "Fonlow.EntityFrameworkCore.MySql \"server=localhost;port=3306;Uid=root; password=zzzzzzzz; database=Poems_Test; Persist Security Info=True;Allow User Variables=true\"",
-                "Delay": 0
-            },
+	"Testing": {
+		"ServiceCommands": [
+			{
+				"CommandPath": "../../../../../PoemsMyDbCreator/bin/{BuildConfiguration}/net8.0/PoemsMyDbCreator.exe",
+				"Arguments": "Fonlow.EntityFrameworkCore.MySql \"server=localhost;port=3306;Uid=root; password=zzzzzzzz; database=Poems_Test; Persist Security Info=True;Allow User Variables=true\"",
+				"Delay": 0
+			},
 
-            {
-                "CommandPath": "dotnet",
-                "Arguments": "run --project ../../../../../PoetryApp/PoetryApp.csproj --no-build --configuration {BuildConfiguration}",
-                "BaseUrl": "http://localhost:5300/",
-                "Delay": 1
-            }
-        ],
-
-        "Username": "admin",
-        "Password": "Pppppp*8"
-    }
+			{
+				"CommandPath": "dotnet",
+				"Arguments": "run --project ../../../../../PoetryApp/PoetryApp.csproj --no-build --configuration {BuildConfiguration}",
+				"BaseUrl": "http://localhost:5300/",
+				"Delay": 1
+			}
+		],
+...
+...
+	}
 }
 ```
 
-Integration Test Suite:
+The setting will instruct the ServiceCommandsFixture as a collection fixture to use PoemsMyDbCreator.exe that will tear-down the DB and create a new one, then launch Web API PoetryApp that uses the blank new DB.
+
+**Remarks**
+
+* You may have an integration test suite that test the Data Access Layer based on Entity Framework (Core) or the Business Logic Layer using something similar to "PoemsMyDbCreator".
+
+Integration Test Suite which is a client app to localhost:5300:
 
 ```csharp
 	public class TestConstants
@@ -123,54 +132,96 @@ appsettings.Debug.json:
 ```csharp
 public sealed class TestingSettings
 {
-    public string Username { get; set; }
-    public string Password { get; set; }
+	public string Username { get; set; }
+	public string Password { get; set; }
 
-    /// <summary>
-    /// For testing with many different user credentials.
-    /// </summary>
-    public UsernamePassword[] Users { get; set; }
+	/// <summary>
+	/// For testing with many different user credentials.
+	/// </summary>
+	public UsernamePassword[] Users { get; set; }
 
-    public ServiceCommand[] ServiceCommands { get; set; }
+	public ServiceCommand[] ServiceCommands { get; set; }
 
-    /// <summary>
-    /// Build configuration such as Debug, Release or whatever custom build configuration. 
-    /// ServiceCommandFixture will replace {BuildConfiguration} in arguments with this.
-    /// </summary>
-    public string BuildConfiguration { get; private set; }
+	/// <summary>
+	/// Build configuration such as Debug, Release or whatever custom build configuration. 
+	/// ServiceCommandFixture will replace {BuildConfiguration} in arguments with this.
+	/// </summary>
+	public string BuildConfiguration { get; private set; }
 }
 
 public sealed class UsernamePassword
 {
-    public string Username { get; set; }
-    public string Password { get; set; }
+	public string Username { get; set; }
+	public string Password { get; set; }
 }
 
 public sealed class ServiceCommand
 {
-    public string CommandPath { get; set; }
-    public string Arguments { get; set; }
+	public string CommandPath { get; set; }
+	public string Arguments { get; set; }
 
-    /// <summary>
-    /// Some services may take some seconds to launch then listen, especially in GitHub Actions which VM/container could be slow. A good bet may be 5 seconds.
-    /// </summary>
-    public int Delay { get; set; }
-    public string ConnectionString { get; set; }
-    public string BaseUrl { get; set; }
+	/// <summary>
+	/// Some services may take some seconds to launch then listen, especially in GitHub Actions which VM/container could be slow. A good bet may be 5 seconds.
+	/// </summary>
+	public int Delay { get; set; }
+	public string ConnectionString { get; set; }
+	public string BaseUrl { get; set; }
 }
 ```
 
-## Recommended/Expected Practices
+## More Examples of Launching Services/Commands
 
-The design of these helper classes are based on the author's understanding about software engineering. If you share the following understandings, you may find the helper classes could be useful giving you smoother developer experience during DevOps or developing cloud-based applications.
+### In-house Web API
 
-For the sake of DevOps, ensure the application codes have zero or the least knowledge of the IT operations.
+```json
+{
+	"CommandPath": "dotnet",
+	"Arguments": "run --project ../../../../../DemoCoreWeb/DemoCoreWeb.csproj --no-build --configuration {BuildConfiguration}",
+}
+```
+Hints:
 
-For the sake of Cloud computing or so called cloud native, ensure the application codes or the primary logics have zero or the least knowledge of the host applications and the cloud environment, after ensuring the overall architectural design and software design have the least coupling with the cloud environment.
+* The current directory of the launched Web API is the directory containing the csproj file.
 
-When doing CI configuration, prefer configuration convention over fine-grained configuration. For example, build the sln, then run all tests, rather than craft fine-grained controls over each library and application of the same sln.
+```json
+{
+	"CommandPath": "dotnet",
+	"Arguments": "../../../../../DemoCoreWeb/bin/{BuildConfiguration}/net8.0/DemoCoreWeb.dll",
+}
+```
 
-There are definitely some legitimate cases that make the above recommendations sound illegitimate .
+Hints:
+
+* The current directory of the launched Web API is the directory of the test suite. Thus if some features of Web API depends on the locations of current directory, content root path and Web root path, such launch may result in problems, for example, it cannot find some files in some default relative locations.
+
+```json
+{
+	"CommandPath": "../../../../../DemoCoreWeb/bin/{BuildConfiguration}/net8.0/DemoCoreWeb.exe",
+}
+```
+
+Hints:
+
+* The current directory of the launched Web API is the directory of the EXE file. And this is recommended.
+* The only setback comparing with launching through the csproj file is that after upgrading to next .NET version, you need to adjust the .NET version in the path, for example, from "net8.0" to "net9.0" and so on.
+
+## GitHub Workflow
+
+For .NET developers, GitHub actions provides a "dotnet.yml" which by default run the debug build. Sometimes it may be more appropriate to run release build. Therefore, change the last 2 steps, like:
+```yml
+    - name: Build
+      run: dotnet build --no-restore --configuration Release
+    - name: Test
+      run: dotnet test --no-build --verbosity normal --configuration Release
+```
+And name the file as "dotnetRelease.yml".
+
+If the integration test suites depend on relatively simple "out-of-process" resources such as ASP.NET Core Web services, the helper classes of "Fonlow.Testing.ServiceCore" could be simple and handy enough before you need to craft more complex GitHub workflows.
+
+Examples:
+
+* https://github.com/zijianhuang/webapiclientgen/actions
+* https://github.com/zijianhuang/openapiclientgen/actions
 
 # Alternatives
 
@@ -179,3 +230,8 @@ The libraries of helper classes have been developed since the .NET Framework era
 * [Functional Testing ASP.NET Core Apps](https://learn.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/test-asp-net-core-mvc-apps#functional-testing-aspnet-core-apps)
 * [Docker Compose Fixture](https://github.com/devjoes/DockerComposeFixture)
 * [Integration Test with .Net Core and Docker](https://ademcatamak.medium.com/integration-test-with-net-core-and-docker-21b241f7372)
+* [BenchmarkDotNet](https://github.com/dotnet/BenchmarkDotNet)
+
+**References:**
+
+* [Different Types of Tests](https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing)

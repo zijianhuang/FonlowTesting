@@ -6,6 +6,7 @@ namespace Fonlow.Testing
 	/// Provide an authorized HttpClient instance with uri and username/password defined in appsettings.json:
 	/// BaseUrl, Username and Password.
 	/// </summary>
+	[Obsolete("In favour of ServiceCommand along with its username/password pairs")]
 	public class DefaultHttpClientWithUsername : HttpClientWithUsername
 	{
 		public DefaultHttpClientWithUsername() : this(null)
