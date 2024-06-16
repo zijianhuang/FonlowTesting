@@ -86,7 +86,10 @@ namespace Fonlow.Testing
 
         [Obsolete("In favor of ServiceCommandFixture")]
         public string DotNetServiceAssemblyPath { get; set; }
-        [Obsolete("In favor of ServiceCommandFixture")]
+
+        /// <summary>
+        /// Used when Web resource is there, no need to be under the control of the test suite.
+        /// </summary>
         public string BaseUrl { get; set; }
 
         public string Username { get; set; }
@@ -124,7 +127,7 @@ namespace Fonlow.Testing
         public ServiceCommand[] ServiceCommands { get; set; }
 
         /// <summary>
-        /// Build configuration such as Debug, Release or whatever custom build configuration. 
+        /// Build configuration of the test suite such as Debug, Release or whatever custom build configuration. 
         /// ServiceCommandFixture will replace {BuildConfiguration} in commandPath and arguments with this.
         /// </summary>
         public string BuildConfiguration { get; private set; }

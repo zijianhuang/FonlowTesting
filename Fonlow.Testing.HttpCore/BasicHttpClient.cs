@@ -30,7 +30,6 @@ namespace Fonlow.Testing
 
 		public System.Net.Http.HttpClient HttpClient { get; private set; }
 
-		public Uri BaseUri { get; protected set; }
 
 		#region IDisposable pattern
 		bool disposed;
