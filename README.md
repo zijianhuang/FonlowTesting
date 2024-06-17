@@ -196,23 +196,23 @@ Hints:
 
 ```json
 {
-	"CommandPath": "../../../../../DemoCoreWeb/bin/{BuildConfiguration}/net8.0/DemoCoreWeb.exe",
+	"CommandPath": "../../../../../DemoCoreWeb/bin/{BuildConfiguration}/net8.0/DemoCoreWeb{ExecutableExt}",
 }
 ```
 
 Hints:
 
-* The current directory of the launched Web API is the directory of the EXE file. And this is recommended.
+* The current directory of the launched Web API is the directory of the EXE file. And this is recommended. On MacOs and Linux, the extension name of executable files is empty, while on Windows, it is ".exe".
 * The only setback comparing with launching through the csproj file is that after upgrading to next .NET version, you need to adjust the .NET version in the path, for example, from "net8.0" to "net9.0" and so on.
 
 ## GitHub Workflow
 
 For .NET developers, GitHub actions provides a "dotnet.yml" which by default run the debug build. Sometimes it may be more appropriate to run release build. Therefore, change the last 2 steps, like:
 ```yml
-    - name: Build
-      run: dotnet build --no-restore --configuration Release
-    - name: Test
-      run: dotnet test --no-build --verbosity normal --configuration Release
+	- name: Build
+	  run: dotnet build --no-restore --configuration Release
+	- name: Test
+	  run: dotnet test --no-build --verbosity normal --configuration Release
 ```
 And name the file as "dotnetRelease.yml".
 

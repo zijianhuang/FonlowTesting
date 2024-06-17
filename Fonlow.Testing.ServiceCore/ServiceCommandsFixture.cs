@@ -17,6 +17,7 @@ namespace Fonlow.Testing
 			{
 				item.Arguments = item.Arguments?.Replace("{BuildConfiguration}", TestingSettings.Instance.BuildConfiguration);
 				item.CommandPath = item.CommandPath?.Replace("{BuildConfiguration}", TestingSettings.Instance.BuildConfiguration);
+				item.CommandPath = item.CommandPath?.Replace("{ExecutableExt}", TestingSettings.Instance.ExecutableExt);
 				var serviceCommandAgent = new ServiceCommandAgent(item);
 				serviceCommandAgent.Start();
 				serviceCommandAgents.Add(serviceCommandAgent);

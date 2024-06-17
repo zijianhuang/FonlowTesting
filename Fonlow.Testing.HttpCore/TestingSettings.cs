@@ -30,6 +30,11 @@ namespace Fonlow.Testing
                 var obj = new TestingSettings();
                 IConfigurationBuilder configBuilder = new ConfigurationBuilder().AddJsonFile("appsettings.json");
                 obj.BuildConfiguration = GetBuildConfiguration();
+
+                if (Environment.OSVersion.Platform== PlatformID.Win32NT){
+                    obj.ExecutableExt = ".exe";
+                }
+
                 string specificAppSettingsFilename = $"appsettings.{obj.BuildConfiguration}.json";
                 if (Path.Exists(specificAppSettingsFilename))
                 {
@@ -131,6 +136,11 @@ namespace Fonlow.Testing
         /// ServiceCommandFixture will replace {BuildConfiguration} in commandPath and arguments with this.
         /// </summary>
         public string BuildConfiguration { get; private set; }
+
+        /// <summary>
+        /// The extention name of executable file. On Win, .exe, and on Linux and MacOs, empty.
+        /// </summary>
+        public string ExecutableExt { get; private set; } = string.Empty;
     }
 
     public sealed class UsernamePassword
