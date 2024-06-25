@@ -1,0 +1,1 @@
+Some assets for integration testing, to be copied over.

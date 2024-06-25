@@ -11,7 +11,7 @@
 		<PackageTags>xunit nunit mstest unittesting iisexpress iis dotnet</PackageTags>
 		<NeutralLanguage>en</NeutralLanguage>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>3.6.2</Version>
+		<Version>3.7-Alpha</Version>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<AnalysisLevel>latest-all</AnalysisLevel>
 	</PropertyGroup>
@@ -26,10 +26,17 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
+		<PackageReference Include="Microsoft.PowerShell.SDK" Version="7.4.3" />
 	</ItemGroup>
+	
 
 	<ItemGroup>
-		<ProjectReference Include="..\Fonlow.Testing.HttpCore\Fonlow.Testing.HttpCore.csproj" />
-		<None Include="..\README.md" Pack="true" PackagePath="\" />
+		<None Include="../README.md" Pack="true" PackagePath="/" />
+	</ItemGroup>
+	
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Fonlow.Testing.Basic\Fonlow.Testing.Basic.csproj" />
+	  <ProjectReference Include="..\Fonlow.Testing.Utilities\Fonlow.Testing.Utilities.csproj" />
 	</ItemGroup>
 </Project>

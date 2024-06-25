@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
+using System.Management.Automation;
 
 namespace Fonlow.Testing
 {
@@ -10,45 +12,71 @@ namespace Fonlow.Testing
 	{
 		public ServiceCommandAgent(ServiceCommand serviceCommand)
 		{
-			this.ServicCommand = serviceCommand;
+			this.Command = serviceCommand;
 		}
 
-		public ServiceCommand ServicCommand { get; private set; }
+		public ServiceCommand Command { get; private set; }
 
 		/// <summary>
 		/// Start DotNet Kestrel Web server.
 		/// </summary>
 		public void Start()
 		{
-			ProcessStartInfo info;
-			var dir = System.IO.Path.GetDirectoryName(ServicCommand.CommandPath);
-			if (string.IsNullOrEmpty(dir))
+			if (Command.IsPowerShellCommand)
 			{
-				info = new ProcessStartInfo(ServicCommand.CommandPath, ServicCommand.Arguments)
+				try
 				{
-					UseShellExecute = true,
-				};
+					using var  ps = PowerShell.Create();
+					ps.AddScript(Command.CommandPath);//.AddArgument("c:/temp/auth.db").AddArgument("c:/temp/authGGGGGG.db");
+					var rs = ps.Invoke();
+					if (ps.HadErrors){
+						var errMsg = string.Join(Environment.NewLine,  ps.Streams.Error.Select(d => d.ErrorDetails.ToString()));
+						Console.Error.WriteLine(errMsg);
+					}
+				}
+				catch (CommandNotFoundException ex)
+				{
+					Console.Error.WriteLine(ex);
+					throw;
+				}
+				catch (Exception ex)
+				{
+					Console.Error.WriteLine(ex);
+					throw;
+				}
 			}
 			else
 			{
-				string command = System.IO.Path.GetFileName(ServicCommand.CommandPath);
-				string workingDir = System.IO.Path.GetFullPath(dir);
-				info = new ProcessStartInfo(command, ServicCommand.Arguments)
+				ProcessStartInfo info;
+				var dir = System.IO.Path.GetDirectoryName(Command.CommandPath);
+				if (string.IsNullOrEmpty(dir))
 				{
-					UseShellExecute = true,
-					WorkingDirectory = workingDir,
-				};
+					info = new ProcessStartInfo(Command.CommandPath, Command.Arguments)
+					{
+						UseShellExecute = true,
+					};
+				}
+				else
+				{
+					string command = System.IO.Path.GetFileName(Command.CommandPath);
+					string workingDir = System.IO.Path.GetFullPath(dir);
+					info = new ProcessStartInfo(command, Command.Arguments)
+					{
+						UseShellExecute = true,
+						WorkingDirectory = workingDir,
+					};
 
-				Console.WriteLine($"Working Dir: {workingDir}; Current Dir: {System.IO.Directory.GetCurrentDirectory()}");
+					Console.WriteLine($"Working Dir: {workingDir}; Current Dir: {System.IO.Directory.GetCurrentDirectory()}");
+				}
+
+				Console.WriteLine($"Starting {Command.CommandPath} {Command.Arguments} ...");
+				process = Process.Start(info);
+				timeStart = DateTime.Now;
+				Console.WriteLine($"Started: {Command.CommandPath} {Command.Arguments} at {timeStart}");
+				System.Threading.Thread.Sleep(this.Command.Delay * 1000);
+				timeStart = DateTime.Now;
+				Console.WriteLine($"Wait a second: {Command.CommandPath} {Command.Arguments} at {timeStart}");
 			}
-
-			Console.WriteLine($"Starting {ServicCommand.CommandPath} {ServicCommand.Arguments} ...");
-			process = Process.Start(info);
-			timeStart = DateTime.Now;
-			Console.WriteLine($"Started: {ServicCommand.CommandPath} {ServicCommand.Arguments} at {timeStart}");
-			System.Threading.Thread.Sleep(this.ServicCommand.Delay * 1000);
-			timeStart = DateTime.Now;
-			Console.WriteLine($"Wait a second: {ServicCommand.CommandPath} {ServicCommand.Arguments} at {timeStart}");
 		}
 
 		DateTime timeStart;

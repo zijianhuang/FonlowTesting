@@ -31,7 +31,8 @@ namespace Fonlow.Testing
                 IConfigurationBuilder configBuilder = new ConfigurationBuilder().AddJsonFile("appsettings.json");
                 obj.BuildConfiguration = GetBuildConfiguration();
 
-                if (Environment.OSVersion.Platform== PlatformID.Win32NT){
+                if (Environment.OSVersion.Platform == PlatformID.Win32NT)
+                {
                     obj.ExecutableExt = ".exe";
                 }
 
@@ -131,6 +132,8 @@ namespace Fonlow.Testing
 
         public ServiceCommand[] ServiceCommands { get; set; }
 
+        public CopyItem[] CopyItems { get; set; }
+
         /// <summary>
         /// Build configuration of the test suite such as Debug, Release or whatever custom build configuration. 
         /// ServiceCommandFixture will replace {BuildConfiguration} in commandPath and arguments with this.
@@ -152,6 +155,12 @@ namespace Fonlow.Testing
     public sealed class ServiceCommand
     {
         public string CommandPath { get; set; }
+
+        /// <summary>
+        /// Such as Get-Date, Copy-Item which will be executed synchronously, that is, wait for it finishes.
+        /// </summary>
+        public bool IsPowerShellCommand { get; set; }
+
         public string Arguments { get; set; }
 
         /// <summary>
@@ -166,5 +175,11 @@ namespace Fonlow.Testing
         /// </summary>
         /// <remarks>Obviously 2FA and alike are not welcome. Good enough for integration tests, but not E2E.</remarks>
         public UsernamePassword[] Users { get; set; }
+    }
+
+    public sealed class CopyItem
+    {
+        public string Source { get; set; }
+        public string Destination { get; set; }
     }
 }

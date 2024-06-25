@@ -8,7 +8,7 @@ namespace IntegrationTests
 	{
 		public WhetherApiFixture()
 		{
-			var c = TestingSettings.Instance.ServiceCommands[0];
+			var c = TestingSettings.Instance.ServiceCommands[1];
 			this.HttpClient.BaseAddress = new System.Uri(c.BaseUrl);
 			Api = new DemoCoreWeb.Controllers.Client.WeatherForecast(this.HttpClient);
 		}
@@ -17,9 +17,9 @@ namespace IntegrationTests
 	}
 
 	[Collection("ServicesLaunch")]
-	public class UnitTest1: IClassFixture<WhetherApiFixture>
+	public class WeatherIntegrationTests: IClassFixture<WhetherApiFixture>
 	{
-		public UnitTest1(WhetherApiFixture fixture)
+		public WeatherIntegrationTests(WhetherApiFixture fixture)
 		{
 			api = fixture.Api;
 		}

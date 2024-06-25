@@ -1,21 +1,20 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
-		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<Version>1.0-Alpha</Version>
 		<Authors>Zijian Huang</Authors>
-		<Description>Setup http client resources</Description>
+		<Description>Utilities and fixtures for integration testing with xUnit</Description>
+		<PackageReleaseNotes></PackageReleaseNotes>
 		<Copyright>Copyright © Fonlow 2015-$([System.DateTime]::Now.Year)</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/zijianhuang/FonlowTesting</PackageProjectUrl>
-		<PackageTags>xunit nunit mstest unittesting iisexpress iis webapi restful dotnet</PackageTags>
+		<PackageTags>xunit nunit mstest unittesting iisexpress iis dotnet</PackageTags>
 		<NeutralLanguage>en</NeutralLanguage>
-		<Version>3.5-Alpha</Version>
-		<PackageReleaseNotes>Upgraded to .NET 8.</PackageReleaseNotes>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<AnalysisLevel>latest-all</AnalysisLevel>
 	</PropertyGroup>
-
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<IncludeSymbols>true</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
@@ -29,6 +28,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Fonlow.Testing.Basic\Fonlow.Testing.Basic.csproj" />
+		<ProjectReference Include="..\Fonlow.Testing.HttpCore\Fonlow.Testing.HttpCore.csproj" />
+		<ProjectReference Include="..\Fonlow.Testing.ServiceCore\Fonlow.Testing.ServiceCore.csproj" />
 	</ItemGroup>
+
 </Project>

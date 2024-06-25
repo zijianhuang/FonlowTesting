@@ -5,10 +5,10 @@ using System.IO;
 namespace Fonlow.Testing
 {
 	/// <summary>
-	/// Copy files from source to destination. If file exists, copy only newer.
+	/// Copy files from source to destination. If file exists, copy only newer. Comparing with PS Copy-Item, this runs synchronously in the same thread.
+	/// Start-ThreadJob is not working in .NET 8 with Microsoft.PowerShell.SDK.
 	/// </summary>
-	[Obsolete("In favour of PowerShell scripts")]
-	public class DeploymentItemFixture
+	public sealed class DeploymentItemFixture
 	{
 		public DeploymentItemFixture()
 		{
@@ -24,6 +24,7 @@ namespace Fonlow.Testing
 				}
 
 				CopyDirectory(source, dest, true);
+				System.Threading.Thread.Sleep(500);
 			}
 		}
 
@@ -36,7 +37,7 @@ namespace Fonlow.Testing
 		/// <param name="destinationDir"></param>
 		/// <param name="recursive"></param>
 		/// <exception cref="DirectoryNotFoundException"></exception>
-		static void CopyDirectory(string sourceDir, string destinationDir, bool recursive)
+		public static void CopyDirectory(string sourceDir, string destinationDir, bool recursive)
 		{
 			var dir = new DirectoryInfo(sourceDir);
 			if (!dir.Exists)
