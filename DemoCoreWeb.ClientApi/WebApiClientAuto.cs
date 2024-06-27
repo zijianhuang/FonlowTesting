@@ -28,7 +28,8 @@ namespace DemoCoreWeb.Controllers.Client
 	using System.Collections.Generic;
 	using System.Threading.Tasks;
 	using System.Net.Http;
-	using Newtonsoft.Json;
+	using System.Text.Json;
+	using System.Text.Json.Serialization;
 	
 	
 	public partial class WeatherForecast
@@ -36,9 +37,9 @@ namespace DemoCoreWeb.Controllers.Client
 		
 		private System.Net.Http.HttpClient client;
 		
-		private JsonSerializerSettings jsonSerializerSettings;
+		private JsonSerializerOptions jsonSerializerSettings;
 		
-		public WeatherForecast(System.Net.Http.HttpClient client, JsonSerializerSettings jsonSerializerSettings=null)
+		public WeatherForecast(System.Net.Http.HttpClient client, JsonSerializerOptions jsonSerializerSettings=null)
 		{
 			if (client == null)
 				throw new ArgumentNullException(nameof(client), "Null HttpClient.");
@@ -61,10 +62,8 @@ namespace DemoCoreWeb.Controllers.Client
 			try
 			{
 				responseMessage.EnsureSuccessStatusCode();
-				var stream = await responseMessage.Content.ReadAsStreamAsync();
-				using JsonReader jsonReader = new JsonTextReader(new System.IO.StreamReader(stream));
-				var serializer = JsonSerializer.Create(jsonSerializerSettings);
-				return serializer.Deserialize<DemoCoreWeb.Client.WeatherForecast[]>(jsonReader);
+				var contentString = await responseMessage.Content.ReadAsStringAsync();
+				return JsonSerializer.Deserialize<DemoCoreWeb.Client.WeatherForecast[]>(contentString, jsonSerializerSettings);
 			}
 			finally
 			{
@@ -83,10 +82,8 @@ namespace DemoCoreWeb.Controllers.Client
 			try
 			{
 				responseMessage.EnsureSuccessStatusCode();
-				var stream = responseMessage.Content.ReadAsStreamAsync().Result;
-				using JsonReader jsonReader = new JsonTextReader(new System.IO.StreamReader(stream));
-				var serializer = JsonSerializer.Create(jsonSerializerSettings);
-				return serializer.Deserialize<DemoCoreWeb.Client.WeatherForecast[]>(jsonReader);
+				var contentString = responseMessage.Content.ReadAsStringAsync().Result;
+				return JsonSerializer.Deserialize<DemoCoreWeb.Client.WeatherForecast[]>(contentString, jsonSerializerSettings);
 			}
 			finally
 			{

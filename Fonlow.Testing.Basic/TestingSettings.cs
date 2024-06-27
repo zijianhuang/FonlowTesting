@@ -17,81 +17,76 @@ namespace Fonlow.Testing
         {
         }
 
-        public static TestingSettings Instance { get { return Nested.instance; } }
+        private static readonly Lazy<TestingSettings> lazy =
+            new Lazy<TestingSettings>(() => Create());
 
-        private class Nested
+        public static TestingSettings Instance { get { return lazy.Value; } }
+
+        static TestingSettings Create()
         {
-            static Nested()
+            var obj = new TestingSettings();
+            IConfigurationBuilder configBuilder = new ConfigurationBuilder().AddJsonFile("appsettings.json");
+            obj.BuildConfiguration = GetBuildConfiguration();
+
+            if (Environment.OSVersion.Platform == PlatformID.Win32NT)
             {
+                obj.ExecutableExt = ".exe";
             }
 
-            static TestingSettings Create()
+            string specificAppSettingsFilename = $"appsettings.{obj.BuildConfiguration}.json";
+            if (Path.Exists(specificAppSettingsFilename))
             {
-                var obj = new TestingSettings();
-                IConfigurationBuilder configBuilder = new ConfigurationBuilder().AddJsonFile("appsettings.json");
-                obj.BuildConfiguration = GetBuildConfiguration();
-
-                if (Environment.OSVersion.Platform == PlatformID.Win32NT)
-                {
-                    obj.ExecutableExt = ".exe";
-                }
-
-                string specificAppSettingsFilename = $"appsettings.{obj.BuildConfiguration}.json";
-                if (Path.Exists(specificAppSettingsFilename))
-                {
-                    configBuilder.AddJsonFile(specificAppSettingsFilename);
-                }
-
-                var config = configBuilder.Build();
-                config.Bind("Testing", obj);//work only when properties are not with private setter.
-
-                return obj;
+                configBuilder.AddJsonFile(specificAppSettingsFilename);
             }
 
-            internal static readonly TestingSettings instance = Create();
+            var config = configBuilder.Build();
+            config.Bind("Testing", obj);//work only when properties are not with private setter.
 
-            static string GetBuildConfiguration()
+            return obj;
+        }
+
+        static string GetBuildConfiguration()
+        {
+            var executingAssembly = Assembly.GetExecutingAssembly();
+            var location = executingAssembly.Location;
+            var dir = Path.GetDirectoryName(location);
+            var pathNames = Directory.GetFiles(dir, "*.dll");
+            List<Assembly> testAssemblies = new List<Assembly>();
+            foreach (var p in pathNames)
             {
-                var executingAssembly = Assembly.GetExecutingAssembly();
-                var location = executingAssembly.Location;
-                var dir = Path.GetDirectoryName(location);
-                var pathNames = Directory.GetFiles(dir, "*.dll");
-                List<Assembly> testAssemblies = new List<Assembly>();
-                foreach (var p in pathNames)
+                try
                 {
-                    try
+                    var a = Assembly.LoadFile(p);
+                    var referencedAssemblies = a.GetReferencedAssemblies();
+                    if (referencedAssemblies.Any(d => d.Name == "xunit.core") && !Path.GetFileName(p).StartsWith("xunit.", StringComparison.OrdinalIgnoreCase))
                     {
-                        var a = Assembly.LoadFile(p);
-                        var referencedAssemblies = a.GetReferencedAssemblies();
-                        if (referencedAssemblies.Any(d => d.Name == "xunit.core") && !Path.GetFileName(p).StartsWith("xunit.", StringComparison.OrdinalIgnoreCase))
-                        {
-                            testAssemblies.Add(a);
-                        }
-                    }
-                    catch (FileLoadException)
-                    {
-                        continue;
-                    }
-                    catch (BadImageFormatException)
-                    {
-                        continue;
+                        testAssemblies.Add(a);
                     }
                 }
+                catch (FileLoadException)
+                {
+                    continue;
+                }
+                catch (BadImageFormatException)
+                {
+                    continue;
+                }
+            }
 
-                if (testAssemblies.Count > 0)
-                {
-                    var assemblyConfigurationAttribute = testAssemblies[0].GetCustomAttribute<AssemblyConfigurationAttribute>();
-                    return assemblyConfigurationAttribute?.Configuration;
-                }
-                else
-                {
-                    return "Debug";
-                }
+            if (testAssemblies.Count > 0)
+            {
+                var assemblyConfigurationAttribute = testAssemblies[0].GetCustomAttribute<AssemblyConfigurationAttribute>();
+                return assemblyConfigurationAttribute?.Configuration;
+            }
+            else
+            {
+                return "Debug";
             }
         }
 
-        [Obsolete("In favor of ServiceCommandFixture")]
-        public string DotNetServiceAssemblyPath { get; set; }
+        public ServiceCommand[] ServiceCommands { get; set; }
+
+        public CopyItem[] CopyItems { get; set; }
 
         /// <summary>
         /// Used when Web resource is there, no need to be under the control of the test suite.
@@ -100,6 +95,27 @@ namespace Fonlow.Testing
 
         public string Username { get; set; }
         public string Password { get; set; }
+
+        /// <summary>
+        /// For testing with many different user credentials.
+        /// </summary>
+        public UsernamePassword[] Users { get; set; }
+
+        /// <summary>
+        /// Build configuration of the test suite such as Debug, Release or whatever custom build configuration. 
+        /// ServiceCommandFixture will replace {BuildConfiguration} in commandPath and arguments with this.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonIgnore]
+        public string BuildConfiguration { get; private set; }
+
+        /// <summary>
+        /// The extention name of executable file. On Win, .exe, and on Linux and MacOs, empty.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonIgnore]
+        public string ExecutableExt { get; private set; } = string.Empty;
+
+        [Obsolete("In favor of ServiceCommandFixture")]
+        public string DotNetServiceAssemblyPath { get; set; }
 
         /// <summary>
         /// For IIS Express, host site name
@@ -124,26 +140,6 @@ namespace Fonlow.Testing
         /// </summary>
         [Obsolete("In favor of ServiceCommandFixture")]
         public string SlnName { get; set; }
-
-        /// <summary>
-        /// For testing with many different user credentials.
-        /// </summary>
-        public UsernamePassword[] Users { get; set; }
-
-        public ServiceCommand[] ServiceCommands { get; set; }
-
-        public CopyItem[] CopyItems { get; set; }
-
-        /// <summary>
-        /// Build configuration of the test suite such as Debug, Release or whatever custom build configuration. 
-        /// ServiceCommandFixture will replace {BuildConfiguration} in commandPath and arguments with this.
-        /// </summary>
-        public string BuildConfiguration { get; private set; }
-
-        /// <summary>
-        /// The extention name of executable file. On Win, .exe, and on Linux and MacOs, empty.
-        /// </summary>
-        public string ExecutableExt { get; private set; } = string.Empty;
     }
 
     public sealed class UsernamePassword
@@ -156,9 +152,6 @@ namespace Fonlow.Testing
     {
         public string CommandPath { get; set; }
 
-        /// <summary>
-        /// Such as Get-Date, Copy-Item which will be executed synchronously, that is, wait for it finishes.
-        /// </summary>
         public bool IsPowerShellCommand { get; set; }
 
         public string Arguments { get; set; }

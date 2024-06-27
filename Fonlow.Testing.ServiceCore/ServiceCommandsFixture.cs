@@ -30,6 +30,8 @@ namespace Fonlow.Testing
             {
                 foreach (var item in TestingSettings.Instance.CopyItems)
                 {
+                    item.Source = item.Source?.Replace("{BuildConfiguration}", TestingSettings.Instance.BuildConfiguration);
+                    item.Destination = item.Destination?.Replace("{BuildConfiguration}", TestingSettings.Instance.BuildConfiguration);
                     DeploymentItemFixture.CopyDirectory(item.Source, item.Destination, true);
                 }
             }
