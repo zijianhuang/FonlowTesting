@@ -1,6 +1,13 @@
 # Fonlow Testing
 
-The goal of this component suite is to help .NET application developers to run integration tests with minimum fixtures in codes and in CI environments being hosted either in local dev machine and the team CI/CD server. You as a software developer will be able to:
+The goal of this component suite is to help .NET application developers to run integration tests with minimum fixtures in codes and in CI environments being hosted either in local dev machine and the team CI/CD server on Windows, Linux or MacOs. 
+
+The overall design cover such scenarios:
+* Your team includes developers whose dev machines are running Windows, MacOS and Linux.
+* You have a team CI/CD environment on GitHub Actions/Workflows, TeamCity and Azure DevOps etc.
+* You want a new clone/pull from the revision control system like Git or GitHub can build, run and execute most if not all integrations right away, regardless of the OS of each dev PC.
+
+You as a software developer will be able to:
 1. Run integration tests as early, frequent and quickly as possible on a local dev machine, thus this may minimize the chances of merge conflicts in codes or in the logics of system integration.
 2. Most of the fixtures and configuration having been working on a local dev machine should be working in the team CI/CT server, Windows based or Linux based. Therefore, this will reduce the costs of the setup and the maintenance of the CI/CD server.
 
@@ -34,20 +41,20 @@ appsettings.json of the integration test suite:
 ```json
 {
 	"Testing": {
-		"ServiceCommands": [
-			{
-				"CommandPath": "../../../../../PoemsMyDbCreator/bin/{BuildConfiguration}/net8.0/PoemsMyDbCreator.exe",
-				"Arguments": "Fonlow.EntityFrameworkCore.MySql \"server=localhost;port=3306;Uid=root; password=zzzzzzzz; database=Poems_Test; Persist Security Info=True;Allow User Variables=true\"",
+		"ServiceCommands": {
+			"ResetDb": {
+				"CommandPath": "../../../../../PoemsMyDbCreator/bin/{BuildConfiguration}/net8.0/PoemsMyDbCreator{ExecutableExt}",
+				"Arguments": "Fonlow.EntityFrameworkCore.MySql \"server=localhost;port=3306;Uid=root; password=Securd321*; database=Poems_Test; Persist Security Info=True;Allow User Variables=true\"",
 				"Delay": 0
 			},
 
-			{
+			"LaunchWebApi": {
 				"CommandPath": "dotnet",
 				"Arguments": "run --project ../../../../../PoetryApp/PoetryApp.csproj --no-build --configuration {BuildConfiguration}",
 				"BaseUrl": "http://localhost:5300/",
 				"Delay": 1
 			}
-		],
+		},
 
 		"Username": "admin",
 		"Password": "MyPassword123"
@@ -85,7 +92,7 @@ namespace PoemsIntegrationTests
 		{
 		}
 
-		public AuthHttpClientWithUsername(HttpMessageHandler handler) : base(new Uri(TestingSettings.Instance.ServiceCommands[1].BaseUrl), TestingSettings.Instance.Username, TestingSettings.Instance.Password, handler)
+		public AuthHttpClientWithUsername(HttpMessageHandler handler) : base(new Uri(TestingSettings.Instance.ServiceCommands["LaunchWebApi"].BaseUrl), TestingSettings.Instance.Username, TestingSettings.Instance.Password, handler)
 		{
 		}
 	}
@@ -147,8 +154,8 @@ The first Web API is for OAuth2 authentication, and the Pet Store Web API recogn
 				"Destination": "../../../../../Core3WebApi/bin/{BuildConfiguration}/net8.0/DemoApp_Data"
 			}
 		],
-		"ServiceCommands": [
-			{
+		"ServiceCommands": {
+			"LaunchIdentityWebApi": {
 				"CommandPath": "../../../../../Core3WebApi/bin/{BuildConfiguration}/net8.0/Core3WebApi{ExecutableExt}",
 				"BaseUrl": "http://127.0.0.1:5000/",
 				"Delay": 1,
@@ -160,7 +167,7 @@ The first Web API is for OAuth2 authentication, and the Pet Store Web API recogn
 				]
 			},
 
-			{
+			"LaunchPetWebApi": {
 				"CommandPath": "../../../../../PetWebApi/bin/{BuildConfiguration}/net8.0/PetWebApi{ExecutableExt}",
 				"BaseUrl": "http://127.0.0.1:6000/",
 				"Delay": 5,
@@ -171,7 +178,7 @@ The first Web API is for OAuth2 authentication, and the Pet Store Web API recogn
 					}
 				]
 			}
-		]
+		}
 	},
 
 }
@@ -240,14 +247,14 @@ appsettings.Debug.json:
 ```json
 {
 	"Testing": {
-		"ServiceCommands": [
-			{
+		"ServiceCommands": {
+			"LaunchDemoCoreWeb": {
 				"CommandPath": "dotnet",
 				"Arguments": "run --project ../../../../../DemoCoreWeb/DemoCoreWeb.csproj --no-build --configuration Debug",
 				"BaseUrl": "http://127.0.0.1:5000/",
 				"Delay": 2
 			}
-		]
+		}
 	}
 }
 ```
@@ -255,11 +262,18 @@ appsettings.Debug.json:
 
 ## Settings
 
+The settings of "Testing" in appsettings.json are mapped to the following class:
 ```csharp
 public sealed class TestingSettings
 {
-	public ServiceCommand[] ServiceCommands { get; set; }
+	/// <summary>
+	/// Service Commands are executed in the order of JSON data initialization.
+	/// </summary>
+	public IReadOnlyDictionary<string, ServiceCommand> ServiceCommands { get; set; }
 
+	/// <summary>
+	/// Each CopyItem is executed synchronous, so items are executed subsequently.
+	/// </summary>
 	public CopyItem[] CopyItems { get; set; }
 
 	/// <summary>
@@ -296,6 +310,12 @@ public sealed class ServiceCommand
 	public int Delay { get; set; }
 	public string ConnectionString { get; set; }
 	public string BaseUrl { get; set; }
+
+	/// <summary>
+	/// For testing with many different user credentials with different authorization.
+	/// </summary>
+	/// <remarks>Obviously 2FA and alike are not welcome. Good enough for integration tests, but not E2E.</remarks>
+	public UsernamePassword[] Users { get; set; }
 }
 ```
 
@@ -355,6 +375,7 @@ Examples:
 
 * https://github.com/zijianhuang/webapiclientgen/actions
 * https://github.com/zijianhuang/openapiclientgen/actions
+* https://github.com/zijianhuang/AuthEF/actions
 
 # Alternatives
 

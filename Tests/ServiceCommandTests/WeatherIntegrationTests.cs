@@ -8,7 +8,7 @@ namespace IntegrationTests
 	{
 		public WhetherApiFixture()
 		{
-			var c = TestingSettings.Instance.ServiceCommands[1];
+			var c = TestingSettings.Instance.ServiceCommands["LaunchWebApi"];
 			this.HttpClient.BaseAddress = new System.Uri(c.BaseUrl);
 			Api = new DemoCoreWeb.Controllers.Client.WeatherForecast(this.HttpClient);
 		}
