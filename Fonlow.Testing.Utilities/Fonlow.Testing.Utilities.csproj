@@ -1,11 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net8.0</TargetFramework>
-		<Version>2.0.1</Version>
+		<TargetFramework>net9.0</TargetFramework>
+		<Version>2.1</Version>
 		<Authors>Zijian Huang</Authors>
 		<Description>Basic types and functions of Fonlow.Testing.Integration suite.</Description>
-		<PackageReleaseNotes></PackageReleaseNotes>
+		<PackageReleaseNotes>.NET 9</PackageReleaseNotes>
 		<Copyright>Copyright © Fonlow 2015-$([System.DateTime]::Now.Year)</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/zijianhuang/FonlowTesting</PackageProjectUrl>
