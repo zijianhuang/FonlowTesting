@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using Fonlow.Auth;
+using System;
 using System.Net.Http;
-using System.Text.Json.Nodes;
 
 namespace Fonlow.Testing
 {
@@ -34,22 +32,31 @@ namespace Fonlow.Testing
 		/// <param name="username"></param>
 		/// <param name="password"></param>
 		/// <param name="handler">Default AcceptAnyCertificateHandler. Injected handler should generally contains ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator </param>
-		protected HttpClientWithUsername(Uri baseUri, string username, string password, HttpMessageHandler handler =null)
+		protected HttpClientWithUsername(Uri baseUri, string username, string password, HttpMessageHandler handler = null)
 		{
 			BaseUri = baseUri;
 			Username = username;
 			Password = password;
-			this.handler = handler ?? AcceptAnyCertificateHandler;
-			if (String.IsNullOrEmpty(AccessToken) || (Expiry - DateTime.Now) < TimeSpan.FromMinutes(5))
+			this.httpMessageHandler = handler ?? AcceptAnyCertificateHandler;
+			if (String.IsNullOrEmpty(AccessToken) || (Expiry - DateTime.Now) < TimeSpan.FromMinutes(5)) //don't bother to do refresh token
 			{
-				AnalyzeToken();
+				using var httpClient = new HttpClient(httpMessageHandler, false);
+				httpClient.BaseAddress = baseUri;
+				var authClient = new AuthClient(httpClient, null);
+				var response = authClient.PostRopcTokenRequestAsFormDataToAuthAsync(new Auth.Models.ROPCRequst
+				{
+					Username = username,
+					Password = password,
+				}).Result;
+
+				AccessToken = response.access_token;
 			}
 
 			if (!String.IsNullOrEmpty(AccessToken))
 			{
-				AuthorizedClient = new HttpClient(this.handler, false);
+				AuthorizedClient = new HttpClient(this.httpMessageHandler, false);
 				AuthorizedClient.BaseAddress = BaseUri;
-				AuthorizedClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue(TokenType, AccessToken);
+				AuthorizedClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", AccessToken);
 			}
 			else
 			{
@@ -57,8 +64,11 @@ namespace Fonlow.Testing
 			}
 		}
 
-		HttpMessageHandler handler;
+		HttpMessageHandler httpMessageHandler;
 
+		/// <summary>
+		/// Good for testing
+		/// </summary>
 		static HttpClientHandler AcceptAnyCertificateHandler
 		{
 			get
@@ -79,11 +89,6 @@ namespace Fonlow.Testing
 
 		public DateTime Expiry { get; private set; } = DateTime.Now.AddYears(-10); // Min may not be good. Just make sure expiry for now.
 
-		/// <summary>
-		/// Generally bearer
-		/// </summary>
-		public string TokenType { get; private set; }
-
 		public string Username { get; private set; }
 
 		public string Password { get; private set; }
@@ -92,70 +97,6 @@ namespace Fonlow.Testing
 		/// Null if the authentication failed.
 		/// </summary>
 		public HttpClient AuthorizedClient { get; private set; }
-
-		/// <summary>
-		/// 
-		/// </summary>
-		void AnalyzeToken()
-		{
-			var text = GetToken(BaseUri, Username, Password);
-			if (String.IsNullOrEmpty(text))
-				return;
-
-			var jObject = JsonObject.Parse(text);
-			var accessTokenObject = jObject["access_token"];
-			var expiriesInObject = jObject["expires_in"];
-			var tokenTypeObject = jObject["token_type"];
-			var expiriesIn = TimeSpan.FromSeconds(Int32.Parse(expiriesInObject.ToString()));
-			Expiry = DateTime.Now.Add(expiriesIn);
-			AccessToken = accessTokenObject.ToString();
-			TokenType = tokenTypeObject.ToString();
-		}
-
-		/// <summary>
-		/// Get the token body as json text from WebApi default token path, ending with "token".
-		/// </summary>
-		/// <param name="baseUri"></param>
-		/// <param name="userName"></param>
-		/// <param name="password"></param>
-		/// <returns>JSON text of JWT</returns>
-		public string GetToken(Uri baseUri, string userName, string password)
-		{
-			//inspired by http://www.codeproject.com/Articles/823263/ASP-NET-Identity-Introduction-to-Working-with-Iden
-			var pairs = new KeyValuePair<string, string>[]
-						{
-							new KeyValuePair<string, string>( "grant_type", "password" ),
-							new KeyValuePair<string, string>( "username", userName ),
-							new KeyValuePair<string, string> ( "password", password )
-						};
-			using var content = new FormUrlEncodedContent(pairs);
-			try
-			{
-				using (var client = new HttpClient(this.handler, false))
-				{
-					var response = client.PostAsync(new Uri(baseUri, "Token"), content).Result;
-					if (!response.IsSuccessStatusCode)
-					{
-						var error = String.Format("Please check app.config or appsettings.json or Web dependencies. Cannot get token for {0}:{1} with Uri {2}, with status code {3} and message {4}", userName, password, baseUri, response.StatusCode, response.ReasonPhrase);
-						Trace.TraceError(error);
-						throw new System.Security.Authentication.AuthenticationException(error);
-					}
-
-					var text = response.Content.ReadAsStringAsync().Result;
-					return text;
-				}
-
-			}
-			catch (AggregateException e)
-			{
-				e.Handle((innerException) =>
-				{
-					Trace.TraceWarning(innerException.Message);
-					return false;//Better to make it false here, since the test runner may shutdown before the trace message could be written to the log file.
-				});
-				return null;
-			}
-		}
 
 		bool disposed;
 

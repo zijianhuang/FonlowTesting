@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net9.0</TargetFramework>
-		<Version>2.1</Version>
+		<Version>2.1.1</Version>
 		<Authors>Zijian Huang</Authors>
 		<Description>Basic types and functions of Fonlow.Testing.Integration suite.</Description>
 		<PackageReleaseNotes>.NET 9</PackageReleaseNotes>

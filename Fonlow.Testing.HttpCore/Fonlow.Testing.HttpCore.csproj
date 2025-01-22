@@ -10,8 +10,8 @@
 		<PackageProjectUrl>https://github.com/zijianhuang/FonlowTesting</PackageProjectUrl>
 		<PackageTags>xunit nunit mstest unittesting iisexpress iis webapi restful dotnet</PackageTags>
 		<NeutralLanguage>en</NeutralLanguage>
-		<Version>3.6</Version>
-		<PackageReleaseNotes>.NET 9</PackageReleaseNotes>
+		<Version>3.7.2</Version>
+		<PackageReleaseNotes>Obsolete classes removed.</PackageReleaseNotes>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<AnalysisLevel>latest-all</AnalysisLevel>
 	</PropertyGroup>
@@ -26,6 +26,10 @@
 
 	<ItemGroup>
 		<None Include="../README.md" Pack="true" PackagePath="/" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Fonlow.Auth.tokenClient" Version="1.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
