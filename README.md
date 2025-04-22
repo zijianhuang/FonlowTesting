@@ -211,6 +211,20 @@ To ensure copying files synchronously, use the following setup:
 
 Most PowerShell commands are synchronous, and "Copy-Item" are among few that are asynchronous. 
 
+You may also define if the copying is recursive or copy always. The CopyAlways option is handing for running the integration test locally and the test may alter some of the files then the changes may impact on the result of next run.
+
+```json
+	"Testing": {
+		"CopyItems": [
+			{
+				"Source": "../../../Assets",
+				"Destination":  "./Assets",
+				"Recursive": false,
+				"CopyAlways": true
+			}
+		]
+```
+
 **Remarks:**
 1. Developers on MS stacks have been using pre-build event and post-build event of MsBuild to setup and tear down artifacts and assets needed. However, in Linux environment, things have become a bit complicated. For examples, "cp" of Linux is by default asynchronous, and "Copy-Item" of PowerShell is asynchronous. Therefore, it could happen that some test cases run before the artifacts/assets are copied over, resulting in failed cases, sometimes randomly.
 

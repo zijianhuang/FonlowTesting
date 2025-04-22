@@ -38,7 +38,7 @@ namespace Fonlow.Testing
 						.Replace("{RuntimeId}", TestingSettings.Instance.RuntimeId);
 					item.Destination = item.Destination?.Replace("{BuildConfiguration}", TestingSettings.Instance.BuildConfiguration)
 						.Replace("{RuntimeId}", TestingSettings.Instance.RuntimeId);
-					DeploymentItemFixture.CopyDirectory(item.Source, item.Destination, true);
+					DeploymentItemFixture.CopyDirectory(item.Source, item.Destination, item.Recursive, item.CopyAlways);
 				}
 			}
 		}

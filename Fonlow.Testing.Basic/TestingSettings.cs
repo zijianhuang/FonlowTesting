@@ -136,35 +136,6 @@ namespace Fonlow.Testing
 		public string ExecutableExt { get; private set; } = string.Empty;
 		#endregion
 
-		//#region Obsolete
-		//[Obsolete("In favor of ServiceCommandFixture")]
-		//public string DotNetServiceAssemblyPath { get; set; }
-
-		///// <summary>
-		///// For IIS Express, host site name
-		///// </summary>
-		//[Obsolete("In favor of ServiceCommandFixture")]
-		//public string HostSite { get; set; }
-
-		///// <summary>
-		///// For IIS Express, application pool
-		///// </summary>
-		//[Obsolete("In favor of ServiceCommandFixture")]
-		//public string HostSiteApplicationPool { get; set; }
-
-		///// <summary>
-		///// For IIS Express, the lib needs to be aware the SLN root
-		///// </summary>
-		//[Obsolete("In favor of ServiceCommandFixture")]
-		//public string SlnRoot { get; set; }
-
-		///// <summary>
-		///// For IIS Express, the lib needs to know the SLN name
-		///// </summary>
-		//[Obsolete("In favor of ServiceCommandFixture")]
-		//public string SlnName { get; set; }
-		//#endregion
-
 	}
 
 	public sealed class UsernamePassword
@@ -199,5 +170,12 @@ namespace Fonlow.Testing
 	{
 		public string Source { get; set; }
 		public string Destination { get; set; }
+		public bool Recursive { get; set; }
+
+		/// <summary>
+		/// You may set true if you exxpect some items will be altered during tests and the test may read those changed in next run.
+		/// Handy for tests running on local PC, and save some copying time.
+		/// </summary>
+		public bool CopyAlways { get; set; }
 	}
 }

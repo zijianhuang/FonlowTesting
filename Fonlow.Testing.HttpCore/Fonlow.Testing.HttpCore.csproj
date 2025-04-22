@@ -10,7 +10,7 @@
 		<PackageProjectUrl>https://github.com/zijianhuang/FonlowTesting</PackageProjectUrl>
 		<PackageTags>xunit nunit mstest unittesting iisexpress iis webapi restful dotnet</PackageTags>
 		<NeutralLanguage>en</NeutralLanguage>
-		<Version>3.7.2</Version>
+		<Version>3.7.4</Version>
 		<PackageReleaseNotes>Obsolete classes removed.</PackageReleaseNotes>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<AnalysisLevel>latest-all</AnalysisLevel>

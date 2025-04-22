@@ -23,7 +23,7 @@ namespace Fonlow.Testing
 					throw new ArgumentException("appsettings.json needs to define Source and Destination in section DeploymentItem");
 				}
 
-				CopyDirectory(source, dest, true);
+				CopyDirectory(source, dest, true, true);
 				System.Threading.Thread.Sleep(500);
 			}
 		}
@@ -37,7 +37,7 @@ namespace Fonlow.Testing
 		/// <param name="destinationDir"></param>
 		/// <param name="recursive"></param>
 		/// <exception cref="DirectoryNotFoundException"></exception>
-		public static void CopyDirectory(string sourceDir, string destinationDir, bool recursive)
+		public static void CopyDirectory(string sourceDir, string destinationDir, bool recursive, bool alwaysCopy)
 		{
 			var dir = new DirectoryInfo(sourceDir);
 			if (!dir.Exists)
@@ -49,9 +49,9 @@ namespace Fonlow.Testing
 			foreach (FileInfo file in dir.GetFiles())
 			{
 				string targetFilePath = Path.Combine(destinationDir, file.Name);
-				if (!File.Exists(targetFilePath) || file.CreationTime > File.GetCreationTime(targetFilePath))
+				if (!File.Exists(targetFilePath) || alwaysCopy || file.CreationTime > File.GetCreationTime(targetFilePath))
 				{
-					file.CopyTo(targetFilePath);
+					file.CopyTo(targetFilePath, alwaysCopy);
 				}
 			}
 
@@ -60,7 +60,7 @@ namespace Fonlow.Testing
 				foreach (DirectoryInfo subDir in dirs)
 				{
 					string newDestinationDir = Path.Combine(destinationDir, subDir.Name);
-					CopyDirectory(subDir.FullName, newDestinationDir, true);
+					CopyDirectory(subDir.FullName, newDestinationDir, recursive, alwaysCopy);
 				}
 			}
 		}
