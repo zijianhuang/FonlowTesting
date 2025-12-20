@@ -3,12 +3,17 @@ using Fonlow.CodeDom.Web;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using System;
 using System.Linq;
 using System.Net;
 
 namespace Fonlow.WebApiClientGen
 {
+	/// <summary>
+	/// For CodeGen triggered by a client call.
+	/// </summary>
 	[ApiExplorerSettings(IgnoreApi = true)]
+	[ApiController]
 	[Route("api/[controller]")]
 	public class CodeGenController : ControllerBase
 	{
@@ -28,46 +33,48 @@ namespace Fonlow.WebApiClientGen
 
 		/// <summary>
 		/// Trigger the API to generate WebApiClientAuto.cs for an established client API project.
-		/// POST to  http://localhost:56321/api/CodeGen with json object CodeGenParameters
 		/// </summary>
 		/// <param name="settings"></param>
 		/// <returns>OK if OK</returns>
 		[HttpPost]
-		public ActionResult TriggerCodeGen([FromBody] CodeGenSettings settings)
+		public IActionResult TriggerCodeGen([FromBody] CodeGenSettings settings)
 		{
-			if (settings == null || settings.ClientApiOutputs == null)
-				return new BadRequestResult();
+			if (settings == null)
+				return BadRequest("No settings");
 
-			Fonlow.Web.Meta.WebApiDescription[] apiDescriptions;
+			if (settings.ClientApiOutputs == null)
+				return BadRequest("No settings/ClientApiOutputs");
+
+			Fonlow.Web.Meta.WebApiDescription[] webApiDescriptions;
 			try
 			{
-				var descriptions = ApiExplorerHelper.GetApiDescriptions(apiExplorer);
-				apiDescriptions = descriptions.Select(d => Fonlow.Web.Meta.MetaTransform.GetWebApiDescription(d)).OrderBy(d => d.ActionDescriptor.ActionName).ToArray();
+				ApiDescription[] descriptions = ApiExplorerHelper.GetApiDescriptions(apiExplorer);
+				webApiDescriptions = descriptions.Select(d => Fonlow.Web.Meta.MetaTransform.GetWebApiDescription(d)).OrderBy(d => d.ActionDescriptor.ActionName).ToArray();
 
-			}
-			catch (System.InvalidOperationException e)
-			{
-				System.Diagnostics.Trace.TraceWarning(e.Message);
-				return StatusCode((int)HttpStatusCode.ServiceUnavailable);
-			}
-
-			if (!settings.ClientApiOutputs.CamelCase.HasValue)
-			{
-				settings.ClientApiOutputs.CamelCase = true;
-			}
-
-			try
-			{
-				CodeGen.GenerateClientAPIs(this.webRootPath, settings, apiDescriptions);
 			}
 			catch (Fonlow.Web.Meta.CodeGenException e)
 			{
-				var msg = e.Message + " : " + e.Description;
-				System.Diagnostics.Trace.TraceError(msg);
+				Console.Error.WriteLine(e.Message);
+				return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
+			}
+			catch (System.InvalidOperationException e)
+			{
+				Console.Error.WriteLine(e.Message);
+				return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
+			}
+
+			try
+			{
+				CodeGen.GenerateClientAPIs(this.webRootPath, settings, webApiDescriptions);
+			}
+			catch (Fonlow.Web.Meta.CodeGenException e)
+			{
+				string msg = e.Message + (string.IsNullOrEmpty(e.Description) ? string.Empty : (" : " + e.Description));
+				Console.Error.WriteLine(msg);
 				return BadRequest(msg);
 			}
 
-			return Ok();
+			return Ok("Done");
 		}
 	}
 

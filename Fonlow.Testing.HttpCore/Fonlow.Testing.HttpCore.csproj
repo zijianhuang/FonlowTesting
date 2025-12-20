@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net9.0</TargetFramework>
+		<TargetFramework>net10.0</TargetFramework>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<Authors>Zijian Huang</Authors>
 		<Description>Setup http client resources</Description>
@@ -29,7 +29,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="Fonlow.Auth.tokenClient" Version="1.0.0" />
+	  <PackageReference Include="Fonlow.Auth.tokenClient" Version="1.0.2" />
 	</ItemGroup>
 
 	<ItemGroup>
