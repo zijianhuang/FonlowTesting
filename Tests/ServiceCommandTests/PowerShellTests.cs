@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Management.Automation;
-using System.Management.Automation.Runspaces;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using Xunit;
 
 namespace UnitTests
@@ -79,47 +75,63 @@ namespace UnitTests
             Assert.Empty(ps.Streams.Error);
         }
 
-        //[Fact]
-        //public void TestCopyItemWithStartJobThrowsError()
-        //{
-        //    using var ps = PowerShell.Create();
-        //    ps.AddScript("Start-ThreadJob -ScriptBlock {Copy-Item ../../../PowerShellTests.cs ./A_PowerShellTests.cs}");
-        //    var rs = ps.Invoke();
-        //    Assert.Empty(rs);
-        //    Assert.True(ps.HadErrors); //not supported as of .NET 8, Microsoft.PowerShell.SDK v7.4.3
-        //    //Assert.Empty(ps.Streams.Error);
-        //}
+		[Fact]
+		public void TestSleep1()
+		{
+			Console.WriteLine("Test1 is running");
+			Thread.Sleep(3000);
+			Console.WriteLine("Test1 is completed");
+		}
 
-        //[Fact]
-        //public void TestThreadJobThrowsError()//not supported as of .NET 8, Microsoft.PowerShell.SDK v7.4.3
-        //{
-        //    using var ps = PowerShell.Create();
-        //    ps.AddCommand("Import-Module").AddArgument("ThreadJob").AddCommand("Start-ThreadJob")
-        //    .AddParameter("-ScriptBlock", "{Copy-Item ../../../PowerShellTests.cs ./A_PowerShellTests.cs}");
-        //    var rs = ps.Invoke();
-        //    //Assert.Empty(rs);
-        //    //Assert.True(ps.HadErrors);
-        //    //Assert.NotEmpty(ps.Streams.Error);
-        //}
+		[Fact]
+		public void TestSleep2()
+		{
+			Console.WriteLine("Test2 is running");
+			Thread.Sleep(5000);
+			Console.WriteLine("Test2 is completed");
+		}
 
-        //[Fact]
-        //public void TestThreadJobThrows()//not supported as of .NET 8, Microsoft.PowerShell.SDK v7.4.3
-        //{
-        //    using Runspace runSpace = RunspaceFactory.CreateRunspace();
-        //    runSpace.Open();
-        //    var pipeline = runSpace.CreatePipeline();
-        //    pipeline.Commands.Add("Import-Module");
-        //    pipeline.Commands[0].Parameters.Add("-Name", "ThreadJob");
-        //    pipeline.Invoke();
-        //    using var ps = PowerShell.Create(runSpace);
-        //    ps.AddCommand("Start-ThreadJob")
-        //    .AddParameter("-ScriptBlock", "{Copy-Item ../../../PowerShellTests.cs ./A_PowerShellTests.cs}");
-        //    var rs = ps.Invoke();
-        //    //Assert.Empty(rs);
-        //    //Assert.True(ps.HadErrors);
-        //    //Assert.NotEmpty(ps.Streams.Error);
-        //}
+		//[Fact]
+		//public void TestCopyItemWithStartJobThrowsError()
+		//{
+		//    using var ps = PowerShell.Create();
+		//    ps.AddScript("Start-ThreadJob -ScriptBlock {Copy-Item ../../../PowerShellTests.cs ./A_PowerShellTests.cs}");
+		//    var rs = ps.Invoke();
+		//    Assert.Empty(rs);
+		//    Assert.True(ps.HadErrors); //not supported as of .NET 8, Microsoft.PowerShell.SDK v7.4.3
+		//    //Assert.Empty(ps.Streams.Error);
+		//}
+
+		//[Fact]
+		//public void TestThreadJobThrowsError()//not supported as of .NET 8, Microsoft.PowerShell.SDK v7.4.3
+		//{
+		//    using var ps = PowerShell.Create();
+		//    ps.AddCommand("Import-Module").AddArgument("ThreadJob").AddCommand("Start-ThreadJob")
+		//    .AddParameter("-ScriptBlock", "{Copy-Item ../../../PowerShellTests.cs ./A_PowerShellTests.cs}");
+		//    var rs = ps.Invoke();
+		//    //Assert.Empty(rs);
+		//    //Assert.True(ps.HadErrors);
+		//    //Assert.NotEmpty(ps.Streams.Error);
+		//}
+
+		//[Fact]
+		//public void TestThreadJobThrows()//not supported as of .NET 8, Microsoft.PowerShell.SDK v7.4.3
+		//{
+		//    using Runspace runSpace = RunspaceFactory.CreateRunspace();
+		//    runSpace.Open();
+		//    var pipeline = runSpace.CreatePipeline();
+		//    pipeline.Commands.Add("Import-Module");
+		//    pipeline.Commands[0].Parameters.Add("-Name", "ThreadJob");
+		//    pipeline.Invoke();
+		//    using var ps = PowerShell.Create(runSpace);
+		//    ps.AddCommand("Start-ThreadJob")
+		//    .AddParameter("-ScriptBlock", "{Copy-Item ../../../PowerShellTests.cs ./A_PowerShellTests.cs}");
+		//    var rs = ps.Invoke();
+		//    //Assert.Empty(rs);
+		//    //Assert.True(ps.HadErrors);
+		//    //Assert.NotEmpty(ps.Streams.Error);
+		//}
 
 
-    }
+	}
 }
