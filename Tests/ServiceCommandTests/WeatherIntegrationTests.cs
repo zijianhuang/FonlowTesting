@@ -42,21 +42,21 @@ namespace IntegrationTests
 			Assert.Equal("OK", r);
 		}
 
-		[Fact]
-		public void TestSleep1()
-		{
-			Console.WriteLine("Test1 is running");
-			Thread.Sleep(3000);
-			Console.WriteLine("Test1 is completed");
-		}
+		//[Fact]
+		//public void TestSleep1()
+		//{
+		//	Console.WriteLine("Test1 is running");
+		//	Thread.Sleep(3000);
+		//	Console.WriteLine("Test1 is completed");
+		//}
 
-		[Fact]
-		public void TestSleep2()
-		{
-			output.WriteLine("Test2 is running");
-			Thread.Sleep(5000);
-			output.WriteLine("Test2 is completed");
-		}
+		//[Fact]
+		//public void TestSleep2()
+		//{
+		//	output.WriteLine("Test2 is running");
+		//	Thread.Sleep(5000);
+		//	output.WriteLine("Test2 is completed");
+		//}
 
 	}
 }
