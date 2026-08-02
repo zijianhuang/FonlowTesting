@@ -61,7 +61,7 @@ namespace Fonlow.Testing
 				{
 					var a = Assembly.LoadFile(p);
 					var referencedAssemblies = a.GetReferencedAssemblies();
-					if (referencedAssemblies.Any(d => d.Name == "xunit.core") && !Path.GetFileName(p).StartsWith("xunit.", StringComparison.OrdinalIgnoreCase))
+					if (referencedAssemblies.Any(d => d.Name == "xunit.core" || d.Name == "xunit.v3.core") && !Path.GetFileName(p).StartsWith("xunit.", StringComparison.OrdinalIgnoreCase))
 					{
 						testAssemblies.Add(a);
 					}
