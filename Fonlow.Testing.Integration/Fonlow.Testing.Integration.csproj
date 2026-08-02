@@ -5,7 +5,7 @@
 		<Version>1.2.8</Version>
 		<Authors>Zijian Huang</Authors>
 		<Description>Utilities and fixtures for integration testing with xUnit</Description>
-		<PackageReleaseNotes>.NET 9</PackageReleaseNotes>
+		<PackageReleaseNotes>.NET 10</PackageReleaseNotes>
 		<Copyright>Copyright © Fonlow 2015-$([System.DateTime]::Now.Year)</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/zijianhuang/FonlowTesting</PackageProjectUrl>

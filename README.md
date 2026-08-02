@@ -11,9 +11,12 @@ You as a software developer will be able to:
 1. Run integration tests as early, frequent and quickly as possible on a local dev machine, thus this may minimize the chances of merge conflicts in codes or in the logics of system integration.
 2. Most of the fixtures and configuration having been working on a local dev machine should be working in the team CI/CT server, Windows based or Linux based. Therefore, this will reduce the costs of the setup and the maintenance of the CI/CD server.
 
+Hints:
+* Though the component suite is designed around xUnit 2 & 3, some of the fixtures can be used in MS Test and NUnit.
+
 ## NuGet Packages
 
-### For .NET Core 8.0 +
+### For .NET Core 8.0 +, currently .NET 10
 
 * Package [Fonlow.Testing.Integration](https://www.nuget.org/packages/Fonlow.Testing.Integration)
 	* Package [Fonlow.Testing.ServiceCore](https://www.nuget.org/packages/Fonlow.Testing.ServiceCore/) for executing commands and launching services.

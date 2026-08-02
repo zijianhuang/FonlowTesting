@@ -4,7 +4,7 @@
 		<TargetFramework>net10.0</TargetFramework>
 		<Authors>Zijian Huang</Authors>
 		<Description>Setup and teardown of service resources in unit testing and integration testing.</Description>
-		<PackageReleaseNotes>.NET 9</PackageReleaseNotes>
+		<PackageReleaseNotes>.NET 10</PackageReleaseNotes>
 		<Copyright>Copyright © Fonlow 2015-$([System.DateTime]::Now.Year)</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/zijianhuang/FonlowTesting</PackageProjectUrl>
