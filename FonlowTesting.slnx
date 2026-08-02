@@ -1,0 +1,20 @@
+<Solution>
+  <Folder Name="/DemoServices/">
+    <Project Path="DemoCoreWeb.ClientApi/DemoCoreWeb.ClientApi.csproj" />
+    <Project Path="DemoCoreWeb/DemoCoreWeb.csproj" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path="BuildRelease.ps1" />
+    <File Path="DotNetPack.ps1" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="Tests/ServiceCommandTests/ServiceCommandIntegrationTests.csproj" />
+  </Folder>
+  <Project Path="Fonlow.Testing.Basic/Fonlow.Testing.Basic.csproj" />
+  <Project Path="Fonlow.Testing.HttpCore/Fonlow.Testing.HttpCore.csproj" />
+  <Project Path="Fonlow.Testing.Integration/Fonlow.Testing.Integration.csproj" />
+  <Project Path="Fonlow.Testing.ServiceCore/Fonlow.Testing.ServiceCore.csproj" />
+  <Project Path="Fonlow.Testing.Utilities/Fonlow.Testing.Utilities.csproj" />
+</Solution>
