@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using System;
+using System.IO;
 
 namespace DemoCoreWeb
 {
@@ -13,7 +9,7 @@ namespace DemoCoreWeb
 	{
 		public static void Main(string[] args)
 		{
-			Console.WriteLine("DemoCoreWeb is starting...");
+			Console.WriteLine("Web API launching...");
 			CreateHostBuilder(args).Build().Run();
 		}
 
