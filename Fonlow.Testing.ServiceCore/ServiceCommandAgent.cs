@@ -26,11 +26,12 @@ namespace Fonlow.Testing
 			{
 				try
 				{
-					using var  ps = PowerShell.Create();
+					using var ps = PowerShell.Create();
 					ps.AddScript(Command.CommandPath);//.AddArgument("c:/temp/auth.db").AddArgument("c:/temp/authGGGGGG.db");
 					var rs = ps.Invoke();
-					if (ps.HadErrors){
-						var errMsg = string.Join(Environment.NewLine,  ps.Streams.Error.Select(d => d.ErrorDetails.ToString()));
+					if (ps.HadErrors)
+					{
+						var errMsg = string.Join(Environment.NewLine, ps.Streams.Error.Select(d => d.ErrorDetails.ToString()));
 						Console.Error.WriteLine(errMsg);
 					}
 				}
@@ -56,7 +57,8 @@ namespace Fonlow.Testing
 						UseShellExecute = false,
 						CreateNoWindow = true,
 						RedirectStandardOutput = true,
-						RedirectStandardInput = true,
+						RedirectStandardError = true,
+						RedirectStandardInput=true
 					};
 				}
 				else
@@ -68,6 +70,7 @@ namespace Fonlow.Testing
 						UseShellExecute = false,
 						CreateNoWindow = true,
 						RedirectStandardOutput = true,
+						RedirectStandardError = true,
 						RedirectStandardInput = true,
 						WorkingDirectory = workingDir,
 					};
@@ -75,8 +78,21 @@ namespace Fonlow.Testing
 					Console.WriteLine($"Working Dir: {workingDir}; Current Dir: {System.IO.Directory.GetCurrentDirectory()}");
 				}
 
+				process = new Process(){ StartInfo= info };
+				process.OutputDataReceived += (sender, e) =>
+				{
+					if (e.Data != null)
+						Console.WriteLine(e.Data);
+				};
+				process.ErrorDataReceived += (sender, e) =>
+				{
+					if (e.Data != null)
+						Console.Error.WriteLine(e.Data);
+				};
 				Console.WriteLine($"Starting {Command.CommandPath} {Command.Arguments} ...");
-				process = Process.Start(info);
+				process.Start();
+				process.BeginErrorReadLine();
+				process.BeginOutputReadLine();
 				timeStart = DateTime.Now;
 				Console.WriteLine($"Started: {Command.CommandPath} {Command.Arguments} at {timeStart}");
 				System.Threading.Thread.Sleep(this.Command.Delay * 1000);
