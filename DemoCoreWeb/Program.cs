@@ -13,6 +13,7 @@ namespace DemoCoreWeb
 	{
 		public static void Main(string[] args)
 		{
+			Console.WriteLine("DemoCoreWeb is starting...");
 			CreateHostBuilder(args).Build().Run();
 		}
 

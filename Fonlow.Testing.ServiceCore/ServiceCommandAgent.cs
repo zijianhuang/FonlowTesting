@@ -53,16 +53,22 @@ namespace Fonlow.Testing
 				{
 					info = new ProcessStartInfo(Command.CommandPath, Command.Arguments)
 					{
-						UseShellExecute = true,
+						UseShellExecute = false,
+						CreateNoWindow = true,
+						RedirectStandardOutput = true,
+						RedirectStandardInput = true,
 					};
 				}
 				else
 				{
-					string command = System.IO.Path.GetFileName(Command.CommandPath);
+					//string command = System.IO.Path.GetFileName(Command.CommandPath);
 					string workingDir = System.IO.Path.GetFullPath(dir);
-					info = new ProcessStartInfo(command, Command.Arguments)
+					info = new ProcessStartInfo(Command.CommandPath, Command.Arguments)
 					{
-						UseShellExecute = true,
+						UseShellExecute = false,
+						CreateNoWindow = true,
+						RedirectStandardOutput = true,
+						RedirectStandardInput = true,
 						WorkingDirectory = workingDir,
 					};
 
