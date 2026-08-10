@@ -1,7 +1,7 @@
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System;
-using System.IO;
 
 namespace DemoCoreWeb
 {
@@ -10,14 +10,33 @@ namespace DemoCoreWeb
 		public static void Main(string[] args)
 		{
 			Console.WriteLine("Web API launching...");
-			CreateHostBuilder(args).Build().Run();
+			var builder = WebApplication.CreateBuilder(args);
+
+			builder.Logging.ClearProviders();
+			builder.Logging.AddConsole();
+			builder.Services.AddControllers(options =>
+			{
+#if DEBUG
+				options.Conventions.Add(new Fonlow.CodeDom.Web.ApiExplorerVisibilityEnabledConvention());//To make ApiExplorer be visible to WebApiClientGen
+#endif
+			});
+
+			using var loggerFactory = LoggerFactory.Create(logging =>
+			{
+				logging.AddConsole();
+			});
+
+			var logger = loggerFactory.CreateLogger("Startup");
+
+			logger.LogInformation("Application startup begins");
+
+			var app = builder.Build();
+
+			logger.LogInformation("Application built successfully");
+
+			app.MapControllers();
+			app.Run();
 		}
 
-		public static IHostBuilder CreateHostBuilder(string[] args) =>
-			Host.CreateDefaultBuilder(args)
-				.ConfigureWebHostDefaults(webBuilder =>
-				{
-					webBuilder.UseStartup<Startup>();
-				});
 	}
 }

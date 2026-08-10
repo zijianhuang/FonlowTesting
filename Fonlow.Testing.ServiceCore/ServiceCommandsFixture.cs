@@ -13,6 +13,8 @@ namespace Fonlow.Testing
 		/// </summary>
 		public ServiceCommandsFixture()
 		{
+			Console.WriteLine("========== TEST CONSOLE TEST ==========");
+			Console.Error.WriteLine("========== TEST STDERR TEST ==========");
 			if (TestingSettings.Instance.ServiceCommands != null)
 			{
 				foreach (var key in TestingSettings.Instance.ServiceCommands.Keys)

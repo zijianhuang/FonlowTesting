@@ -54,45 +54,51 @@ namespace Fonlow.Testing
 				{
 					info = new ProcessStartInfo(Command.CommandPath, Command.Arguments)
 					{
-						UseShellExecute = false,
-						CreateNoWindow = true,
-						RedirectStandardOutput = true,
-						RedirectStandardError = true,
-						RedirectStandardInput=true
+						UseShellExecute = true,
+						//CreateNoWindow = true,
+						//RedirectStandardOutput = true,
+						//RedirectStandardError = true,
+						//RedirectStandardInput=true
 					};
 				}
 				else
 				{
-					//string command = System.IO.Path.GetFileName(Command.CommandPath);
 					string workingDir = System.IO.Path.GetFullPath(dir);
 					info = new ProcessStartInfo(Command.CommandPath, Command.Arguments)
 					{
-						UseShellExecute = false,
-						CreateNoWindow = true,
-						RedirectStandardOutput = true,
-						RedirectStandardError = true,
-						RedirectStandardInput = true,
+						UseShellExecute = true,
+						//CreateNoWindow = true,
+						//RedirectStandardOutput = true,
+						//RedirectStandardError = true,
+						//RedirectStandardInput = true,
 						WorkingDirectory = workingDir,
 					};
 
 					Console.WriteLine($"Working Dir: {workingDir}; Current Dir: {System.IO.Directory.GetCurrentDirectory()}");
 				}
 
-				process = new Process(){ StartInfo= info };
-				process.OutputDataReceived += (sender, e) =>
-				{
-					if (e.Data != null)
-						Console.WriteLine(e.Data);
-				};
-				process.ErrorDataReceived += (sender, e) =>
-				{
-					if (e.Data != null)
-						Console.Error.WriteLine(e.Data);
-				};
+				process = new Process(){ StartInfo= info, EnableRaisingEvents = true };
+				//process.OutputDataReceived += (_, e) =>
+				//{
+				//	if (e.Data != null)
+				//	{
+				//		Console.Out.WriteLine($"[CHILD STDOUT] {e.Data}");
+				//		Console.Out.Flush();
+				//	}
+				//};
+
+				//process.ErrorDataReceived += (_, e) =>
+				//{
+				//	if (e.Data != null)
+				//	{
+				//		Console.Error.WriteLine($"[CHILD STDERR] {e.Data}");
+				//		Console.Error.Flush();
+				//	}
+				//};
 				Console.WriteLine($"Starting {Command.CommandPath} {Command.Arguments} ...");
 				process.Start();
-				process.BeginErrorReadLine();
-				process.BeginOutputReadLine();
+				//process.BeginErrorReadLine();
+				//process.BeginOutputReadLine();
 				timeStart = DateTime.Now;
 				Console.WriteLine($"Started: {Command.CommandPath} {Command.Arguments} at {timeStart}");
 				System.Threading.Thread.Sleep(this.Command.Delay * 1000);

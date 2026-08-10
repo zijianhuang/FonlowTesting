@@ -32,6 +32,7 @@ namespace IntegrationTests
 		[Fact]
 		public void Test1()
 		{
+			output.WriteLine("ITestOutputHelper output");
 			Console.WriteLine("Console output in test1");
 			Assert.NotEmpty(api.Get());
 		}

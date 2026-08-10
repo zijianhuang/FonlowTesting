@@ -1,5 +1,5 @@
 ﻿#Launch WebApi Website and POST a request for generating client APIs
-$path = "$PSScriptRoot/DemoCoreWeb/bin/Debug/net8.0"
+$path = "$PSScriptRoot/DemoCoreWeb/bin/Debug/net10.0"
 $procArgs = @{
     FilePath         = "dotnet"
     ArgumentList     = "$path/DemoCoreWeb.dll"

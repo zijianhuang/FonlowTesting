@@ -1,1 +1,1 @@
-﻿dotnet build fonlowtesting.slnx  --configuration Release --no-incremental
+﻿dotnet build fonlowtesting.slnx --no-restore --configuration Release --no-incremental
