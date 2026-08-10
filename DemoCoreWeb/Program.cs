@@ -23,7 +23,7 @@ namespace DemoCoreWeb
 
 			using var loggerFactory = LoggerFactory.Create(logging =>
 			{
-				logging.AddConsole();
+				logging.AddSimpleConsole();
 			});
 
 			var logger = loggerFactory.CreateLogger("Startup");
