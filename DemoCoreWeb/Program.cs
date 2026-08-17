@@ -13,7 +13,7 @@ namespace DemoCoreWeb
 			var builder = WebApplication.CreateBuilder(args);
 
 			builder.Logging.ClearProviders();
-			builder.Logging.AddConsole();
+			builder.Logging.AddConsole();// so other logger like those in system can use
 			builder.Services.AddControllers(options =>
 			{
 #if DEBUG
